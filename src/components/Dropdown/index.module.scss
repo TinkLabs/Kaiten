@@ -1,0 +1,47 @@
+$blue: #162f3e;
+.Dropdown {
+	position: relative;
+	color: #fff;
+	font-size: 12px;
+}
+.DropdownButton {
+	border-radius: 20px;
+	padding: 3px 10px;
+	background: $blue;
+	color: #fff;
+	position: relative;
+	z-index: 2;
+	label {
+		display: inline-block;
+		padding: 0 3px;
+		font-weight: 100;
+	}
+	.selectedLabel {
+		min-width: 70px;
+		text-align: left;
+		display: inline-block;
+		padding: 0 3px;
+		font-weight: 600;
+	}
+	.arrow {
+		position: absolute;
+		right: 10px;
+		top: 0;
+	}
+}
+.DropdownList {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	padding-top: 10px;
+	width: auto;
+	background: $blue;
+	z-index: 1;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	.option {
+		padding: 5px;
+	}
+
+}

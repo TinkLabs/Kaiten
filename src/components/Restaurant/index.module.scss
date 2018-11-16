@@ -1,0 +1,81 @@
+.Image {
+	background: #ddd;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.Distance {
+	width: 100%;
+	font-size: 30px;
+	font-weight: 500;
+	text-align: right;
+}
+
+.name {
+	font-weight: 500;
+	font-size: 26px;
+}
+.category {
+	font-size: 12px;
+	font-weight: 500;
+	opacity: 0.6;
+}
+.district {
+	font-size: 12px;
+	font-weight: 300;
+	opacity: 0.6;
+}
+
+.ListItem {
+	width: 100%;	
+	display: flex;
+	flex-flow: row nowrap;
+	background: #162f3e;
+	color: #fff;
+	margin-bottom: 1px;
+	.imageWrapper {
+		padding: 10px;
+	}
+	.contentWrapper {
+		padding: 10px;
+		flex: 1;
+		span {
+			display: block;
+		}
+	}
+	.locationWrapper {
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+	.Recommendation {
+		flex: 1;
+	}
+}
+.MapItem {
+	width: 100%;	
+	display: flex;
+	flex-flow: row nowrap;
+	background: #162f3e;
+	color: #fff;
+	margin-bottom: 1px;
+	.imageWrapper {
+		padding: 5px;
+	}
+	.contentWrapper {
+		padding: 5px;
+		flex: 1;
+		span {
+			display: block;
+		}
+		.name {
+			font-weight: 500;
+			font-size: 12px;
+		}
+		.Distance {
+			text-align: left;
+			font-size: 20px;
+		}
+	}
+}
