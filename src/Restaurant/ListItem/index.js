@@ -1,5 +1,5 @@
 import React from 'react';
-import geolib from 'geolib';
+import Geo from 'utils/Geo';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 function Image({ src, size, ...props}) {
 	return (
@@ -23,16 +23,14 @@ function Recommendation({ inHotel, staffRecommend }) {
 	)
 }
 function DistanceTo({ lat, lng }) {
-	const distance = geolib.getDistance(
-		{latitude: 35.661259, longitude: 139.728083},
-		{latitude: 35.6592537, longitude: 139.7239108},
-	);
+	const distance = Geo.getDistance(lat, lng);
 	return (
 		<div className={styles.DistanceTo}>
 			{distance} m
 		</div>
 	)
 }
+
 export default function () {
 	return (
 		<button className={styles.ListItem}>
@@ -50,8 +48,8 @@ export default function () {
 					staffRecommend
 				/>
 				<DistanceTo
-					lat=""
-					lng=""
+					lat={35.661259}
+					lng={139.728083}
 				/>
 			</div>
 		</button>

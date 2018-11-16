@@ -1,7 +1,3 @@
-$imagePadding: 10px;
-$imageWidth: 61px;
-$districtWidth: 200px;
-
 .Image {
 	width: 50px;
 	height: 50px;
@@ -25,33 +21,33 @@ $districtWidth: 200px;
 	background: #162f3e;
 	color: #fff;
 	margin-bottom: 1px;
-}
-.ImageWrapper {
-	padding: 10px;
-}
-.ContentWrapper {
-	padding: 10px;
-	flex: 1;
-	span {
-		display: block;
+	.ImageWrapper {
+		padding: 10px;
 	}
-	.name {
-		font-size: 26px;
+	.ContentWrapper {
+		padding: 10px;
+		flex: 1;
+		span {
+			display: block;
+		}
+		.name {
+			font-size: 26px;
+		}
+		.category {
+			font-size: 12px;
+			font-weight: 500;
+			opacity: 0.6;
+		}
+		.district {
+			font-size: 12px;
+			font-weight: 300;
+			opacity: 0.6;
+		}
 	}
-	.category {
-		font-size: 12px;
-		font-weight: 500;
-		opacity: 0.6;
+	.LocationWrapper {
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 	}
-	.district {
-		font-size: 12px;
-		font-weight: 300;
-		opacity: 0.6;
-	}
-}
-.LocationWrapper {
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
 }
