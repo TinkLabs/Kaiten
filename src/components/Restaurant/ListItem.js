@@ -1,28 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Restaurant from 'records/Restaurant';
 import Image from './_Image';
 import Distance from './_Distance';
 import Recommendation from './_Recommendation';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 
-export default function () {
+function ListItem({ restaurant, ...props }) {
 	return (
-		<button className={styles.ListItem}>
+		<button {...props} className={styles.ListItem}>
 			<div className={styles.imageWrapper}>
-				<Image src="https://dummyimage.com/61x61/000/fff" size={61} />
+				<Image src={restaurant.get('cover_image')} size={61} />
 			</div>
 			<div className={styles.contentWrapper}>
-				<span className={styles.name}>六本木店</span>
-				<span className={styles.category}>中華料理、四川料理</span>
-				<span className={styles.district}>Roppongi</span>
+				<span className={styles.name}>{restaurant.get('name')}</span>
+				<span className={styles.category}>{restaurant.get('category')}</span>
+				<span className={styles.district}>{restaurant.get('area')}</span>
 			</div>
 			<div className={styles.locationWrapper}>
 				<Recommendation
 					inHotel
 					staffRecommend
 				/>
-				<Distance lat={35.661259} lng={139.728083} />
+			<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
 			</div>
 		</button>
 	)
 }
+ListItem.propTypes = {
+	restaurant: PropTypes.instanceOf(Restaurant),
+};
+ListItem.defaultProps = {
+	restaurant: new Restaurant(),
+};
+
+export default ListItem;

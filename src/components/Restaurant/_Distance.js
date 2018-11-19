@@ -5,7 +5,7 @@ import Unit from 'utils/Unit';
 import styles from './index.module.scss';
 
 function Distance({ lat, lng }) {
-	if (!lat & !lng) return null;
+	if (!lat || !lng) return null;
 	
 	const meter = Geo.getDistance(lat, lng);
 	const distance = Unit.printDistance(meter);

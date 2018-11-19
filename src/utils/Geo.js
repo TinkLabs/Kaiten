@@ -15,14 +15,14 @@ export default class {
 				lng: parseFloat(localStorage.getItem('lng')),
 			};
 		}
-		return null;
+		return { lat: null, lng: null };
 	}
-	static getDistance(lat, lng) {
-		const loc = this.getLocation();
-		if (!loc) return null;
+	static getDistance(lat2, lng2) {
+		const { lat, lng } = this.getLocation();
+		if (!lat || !lng) return null;
 		return geolib.getDistance(
-			{latitude: loc.lat, longitude: loc.lng},
-			{latitude: lat, longitude: lng}
+			{latitude: lat, longitude: lng},
+			{latitude: lat2, longitude: lng2}
 		); // meter
 	}
 }
