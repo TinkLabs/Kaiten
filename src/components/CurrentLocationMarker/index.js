@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
 	Marker,
 }  from 'react-google-maps';
-import Geo from 'utils/Geo';
 import useMap from 'hooks/useMap';
 
 import Restaurant from 'records/Restaurant';
@@ -11,7 +10,7 @@ import marker from './marker.svg';
 
 
 function MapMarker({restaurant, ...props}) {
-	const { lat, lng } = useMap(Geo.getLocation());
+	const { lat, lng } = useMap();
 	if (!lat || !lng) return null;
 	return (
 		<Marker

@@ -116,7 +116,7 @@ class App extends Component {
 					defaultCenter={{ lat: 35.6592537, lng: 139.7239108 }}
 					activeId={this.state.activeId}
 				/>
-				<div id="list" style={{ height: '150px', width: '100%', overflow: 'overlay'}}>
+			<div id="list" style={{ height: '50vh', width: '100%', overflow: 'overlay'}}>
 					{this.state.restaurants.map(r => (
 						<Element id={`id-${r.get('id')}`} name={`name-${r.get('id')}`} key={`key-${r.get('id')}`}>
 							<ListItem

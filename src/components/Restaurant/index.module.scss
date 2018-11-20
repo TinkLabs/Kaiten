@@ -6,14 +6,14 @@
 }
 .Distance {
 	width: 100%;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: 500;
 	text-align: right;
 }
 
 .name {
 	font-weight: 500;
-	font-size: 20px;
+	font-size: 18px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -43,12 +43,14 @@
 	.contentWrapper {
 		padding: 10px;
 		flex: 1;
+		max-width: 170px;
 		span {
 			display: block;
 		}
 	}
 	.locationWrapper {
-		padding: 10px;
+		padding: 5px;
+		min-width: 50px;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
