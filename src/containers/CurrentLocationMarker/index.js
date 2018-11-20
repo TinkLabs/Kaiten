@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import {
 	Marker,
 }  from 'react-google-maps';
-import useMap from 'hooks/useMap';
-
+import { connect } from 'react-redux';
 import Restaurant from 'records/Restaurant';
 import marker from './marker.svg';
 
 
-function MapMarker({restaurant, ...props}) {
-	const { lat, lng } = useMap();
-	if (!lat || !lng) return null;
+function MapMarker({restaurant, lat, lng, locationEnabled, ...props}) {
+	if (!locationEnabled) return null;
 	return (
 		<Marker
 			position={{ lat, lng }}
@@ -26,9 +24,22 @@ function MapMarker({restaurant, ...props}) {
 }
 MapMarker.propTypes = {
 	restaurant: PropTypes.instanceOf(Restaurant),
-};
-MapMarker.defaultProps = {
-	restaurant: new Restaurant(),
+	locationEnabled: PropTypes.bool,
 };
 
-export default MapMarker;
+MapMarker.defaultProps = {
+	restaurant: new Restaurant(),
+	locationEnabled: false,
+};
+
+const mapStateToProps = state => ({
+	lat: state.getIn(['device', 'lat']),
+	lng: state.getIn(['device', 'lng']),
+	locationEnabled: state.getIn(['device', 'locationEnabled']),
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapMarker);

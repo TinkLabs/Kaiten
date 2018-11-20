@@ -1,18 +1,14 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Element, scroller } from 'react-scroll'
+import React, { Component } from 'react';
+import { Element, scroller } from 'react-scroll';
+import { connect } from 'react-redux';
 import list from 'api/list';
 import Geo from 'utils/Geo';
 import Immutable from 'immutable';
 import Restaurant from 'records/Restaurant';
-import ListItem from 'components/Restaurant/ListItem';
-import MapItem from 'components/Restaurant/MapItem';
-import MapMarker from 'components/Restaurant/MapMarker';
-import CurrentLocationMarker from 'components/CurrentLocationMarker';
+import { MapMarker } from 'components';
+import { CurrentLocationMarker, RestaurantListItem } from 'containers';
 
-import Dropdown from 'components/Dropdown';
-import GoogleMapReact from 'google-map-react';
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
-
 
 const {
 	withScriptjs,
@@ -44,14 +40,15 @@ const Mapp = withScriptjs(withGoogleMap((props) => (
 	<MarkerClusterer
 		averageCenter
 		enableRetinaIcons
-		gridSize={20}
+		gridSize={10}
 	>
-	{props.restaurants.map(r => (
-		<MapMarker
-			isActive={props.activeId === r.get('id')}
-			restaurant={r}
-			onClick={props.onClick}
-		/>))}
+		{props.restaurants.map(r => (
+			<MapMarker
+				key={`key-map-marker-${r.get('id')}`}
+				isActive={props.activeId === r.get('id')}
+				restaurant={r}
+				onClick={props.onClick}
+			/>))}
 	</MarkerClusterer>
 	{props.directions && <DirectionsRenderer directions={props.directions} options={{suppressMarkers: true}} />}
 </GoogleMap>)));
@@ -82,10 +79,10 @@ class App extends Component {
 			smooth: true,
 			containerId: 'list', // Scrolls to element + 50 pixels down the page
 		})
+		if (!this.props.locationEnabled) return;
 		const DirectionsService = new window.google.maps.DirectionsService();
-		const { lat, lng } = Geo.getLocation();
 		DirectionsService.route({
-			origin: new window.google.maps.LatLng(lat, lng),
+			origin: new window.google.maps.LatLng(this.props.lat, this.props.lng),
 			destination: new window.google.maps.LatLng(r.get('lat'), r.get('lng')),
 			travelMode: window.google.maps.TravelMode.WALKING,
 		}, (result, status) => {
@@ -100,9 +97,7 @@ class App extends Component {
 			}
 		});
 	}
-	render() {
-		const { lat, lng } = Geo.getLocation();
-		
+	render() {		
 		return (
 			<div className="App">
 				<Mapp
@@ -119,7 +114,7 @@ class App extends Component {
 			<div id="list" style={{ height: '50vh', width: '100%', overflow: 'overlay'}}>
 					{this.state.restaurants.map(r => (
 						<Element id={`id-${r.get('id')}`} name={`name-${r.get('id')}`} key={`key-${r.get('id')}`}>
-							<ListItem
+							<RestaurantListItem
 								restaurant={r}
 							/>
 						</Element>
@@ -129,6 +124,14 @@ class App extends Component {
 		);
 	}
 }
+const mapStateToProps = state => ({
+	lat: state.getIn(['device', 'lat']),
+	lng: state.getIn(['device', 'lng']),
+	locationEnabled: state.getIn(['device', 'locationEnabled']),
+});
 
+const mapDispatchToProps = dispatch => ({
 
-export default App;
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

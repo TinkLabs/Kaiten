@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export default function useMap() {
 	const [ lat, setLat ] = useState(null);
 	const [ lng, setLng ] = useState(null);
+	
 	const [ watchId, setWatchId ] = useState(0);
 	navigator.geolocation.getCurrentPosition((position) => {
 		setLat(position.coords.latitude);

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Restaurant from 'records/Restaurant';
-import Image from './_Image';
-import Distance from './_Distance';
-import Recommendation from './_Recommendation';
+import { Image, Recommendation } from 'components';
+import { Distance } from 'containers';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from './_Image';
-import Distance from './_Distance';
+import { Image } from 'components';
+import { Distance } from 'containers';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 

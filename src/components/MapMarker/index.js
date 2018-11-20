@@ -5,7 +5,6 @@ import {
 }  from 'react-google-maps';
 import Restaurant from 'records/Restaurant';
 import marker from './marker.svg';
-import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 
 function MapMarker({restaurant, isActive, ...props}) {

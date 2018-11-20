@@ -1,0 +1,45 @@
+
+.name {
+	font-weight: 500;
+	font-size: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.category {
+	font-size: 12px;
+	font-weight: 500;
+	opacity: 0.6;
+}
+.district {
+	font-size: 12px;
+	font-weight: 300;
+	opacity: 0.6;
+}
+.MapItem {
+	width: 100%;	
+	display: flex;
+	flex-flow: row nowrap;
+	background: #162f3e;
+	color: #fff;
+	overflow: hidden;
+	margin-bottom: 1px;
+	.imageWrapper {
+		padding: 5px;
+	}
+	.contentWrapper {
+		padding: 5px;
+		flex: 1;
+		span {
+			display: block;
+		}
+		.name {
+			font-weight: 500;
+			font-size: 12px;
+		}
+		.Distance {
+			text-align: left;
+			font-size: 20px;
+		}
+	}
+}
