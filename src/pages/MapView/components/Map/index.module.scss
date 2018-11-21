@@ -1,0 +1,18 @@
+.btnLocation {
+	position: absolute;
+	bottom: 110px;
+	right: 20px;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	opacity: 0.8;
+	border-radius: 20px;
+	background: #000f23;
+	z-index: 1;
+	text-align: center;
+	:global(.icon) {
+		color: #fff;
+		font-size: 14px;
+		line-height: 25px;
+	}
+}

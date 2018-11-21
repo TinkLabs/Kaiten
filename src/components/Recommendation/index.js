@@ -5,8 +5,8 @@ import styles from './index.module.scss';
 function Recommendation({ inHotel, staffRecommend }) {
 	return (
 		<div className={styles.Recommendation}>
-			{inHotel ? 'i': null}
-			{staffRecommend ? 's': null}
+			{inHotel ? <span className="icon icon-handyicon-portal-mice" />: <span />}
+			{staffRecommend ? <span className="icon icon-handy-icon-hotel" />: <span />}
 		</div>
 	)
 }

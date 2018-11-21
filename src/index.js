@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import App from 'pages/AppRoute';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import 'handy-font/styles.css';
+import 'react-dynamic-swiper/lib/styles.css';
 
 import store from 'store';
 

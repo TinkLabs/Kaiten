@@ -13,7 +13,7 @@ function Distance({ lat, lng, deviceLat, deviceLng, locationEnabled }) {
 
 	return (
 		<div className={styles.Distance}>
-			{distance.distance} {distance.unit}
+			<span className="icon icon-handy-icon-sent" />{distance.distance}{distance.unit}
 		</div>
 	)
 }

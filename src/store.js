@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import Immutable from 'immutable';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from 'modules';
-import debounce from 'utils/debounce';
 
 export const history = createHistory();
 
@@ -40,12 +39,13 @@ navigator.geolocation.getCurrentPosition((position) => {
 }, (err) => {
 	alert(JSON.stringify(err));
 });
-// navigator.geolocation.watchPosition(debounce((position) => {
-// 	store.dispatch({
-// 		type: 'UPDATE_LAT_LNG',
-// 		lat: position.coords.latitude,
-// 		lng: position.coords.longitude,
-// 	});
-// }, 3000));
+navigator.geolocation.watchPosition((position) => {
+	console.log(position);
+	store.dispatch({
+		type: 'UPDATE_LAT_LNG',
+		lat: position.coords.latitude,
+		lng: position.coords.longitude,
+	});
+});
 window.store = store;
 export default store;

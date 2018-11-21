@@ -55,7 +55,19 @@ button {
 	border: none;
 	text-align: left;
 	cursor: pointer;
+	background: transparent;
 	&:focus, &:active {
 		outline: none;
 	}
+}
+#root {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+.icon {
+	display: inline-block;
+	vertical-align: middle;
 }

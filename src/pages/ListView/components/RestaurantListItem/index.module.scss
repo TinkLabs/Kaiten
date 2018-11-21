@@ -2,19 +2,19 @@
 
 .name {
 	font-weight: 500;
-	font-size: 18px;
+	font-size: 15px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 .category {
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 500;
 	opacity: 0.6;
 }
 .district {
 	font-size: 12px;
-	font-weight: 300;
+	font-weight: 100;
 	opacity: 0.6;
 }
 
@@ -26,20 +26,23 @@
 	color: #fff;
 	overflow: hidden;
 	margin-bottom: 1px;
+	&.hotel {
+		background: #312f57;
+	}
 	.imageWrapper {
 		padding: 10px;
 	}
 	.contentWrapper {
-		padding: 10px;
+		padding: 10px 0;
 		flex: 1;
-		max-width: 170px;
+		overflow: hidden;
 		span {
 			display: block;
 		}
 	}
 	.locationWrapper {
 		padding: 5px;
-		min-width: 50px;
+		min-width: 80px;
 		display: flex;
 		flex-direction: column;
 		height: 100%;

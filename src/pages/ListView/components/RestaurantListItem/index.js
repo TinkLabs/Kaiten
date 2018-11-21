@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Restaurant from 'records/Restaurant';
 import { Image, Recommendation } from 'components';
 import { Distance } from 'containers';
@@ -8,7 +9,10 @@ import styles from './index.module.scss'; // Import css modules stylesheet as st
 
 function ListItem({ restaurant, ...props }) {
 	return (
-		<button {...props} className={styles.ListItem}>
+		<button
+			{...props}
+			className={classnames(styles.ListItem, { [styles.hotel]: true })}
+		>
 			<div className={styles.imageWrapper}>
 				<Image src={restaurant.get('cover_image')} size={61} />
 			</div>
