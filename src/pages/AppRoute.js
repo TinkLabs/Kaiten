@@ -5,6 +5,8 @@ import MapView from './MapView';
 import ListView from './ListView';
 import Controls from './Controls';
 import Nav from './Nav';
+import DetailPage from './DetailPage';
+
 import styles from './index.module.scss';
 
 const propTypes = {
@@ -35,6 +37,11 @@ class App extends Component {
 							exact
 							path="/map"
 							component={MapView}
+						/>
+						<Route
+							exact
+							path="/restaurants/:id"
+							component={DetailPage}
 						/>
 					</Switch>
 				</div>

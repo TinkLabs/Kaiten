@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import Android from 'utils/Android';
 
 export const RESET = 'RESET';
 export const UPDATE_LAT_LNG = 'UPDATE_LAT_LNG';
@@ -7,6 +8,7 @@ const initialState = Immutable.Map({
 	lat: null,
 	lng: null,
 	locationEnabled: false,
+	hotel_id: Android().hotel_id,
 });
 
 export default (state = initialState, action) => {

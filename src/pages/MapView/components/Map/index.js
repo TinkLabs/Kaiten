@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateActiveID, hideDirection } from 'modules/active';
+import { updateActiveID, hideDirection } from 'modules/result';
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -122,8 +122,8 @@ class Map extends React.Component {
 					ref={(ref) => { this.mapRef = ref; }}
 					defaultZoom={16}
 					defaultCenter={{
-						lat: this.props.lat || Geo.getLocation().lat,
-						lng: this.props.lng || Geo.getLocation().lng,
+						lat: this.props.lat || Geo.getHandyLocation().lat,
+						lng: this.props.lng || Geo.getHandyLocation().lng,
 					}}
 					options={mapOptions}
 				>
@@ -166,8 +166,8 @@ const mapStateToProps = state => ({
 	lat: state.getIn(['device', 'lat']),
 	lng: state.getIn(['device', 'lng']),
 	locationEnabled: state.getIn(['device', 'locationEnabled']),
-	activeId: state.getIn(['active', 'id']),
-	showDirection: state.getIn(['active', 'show_direction']),
+	activeId: state.getIn(['result', 'id']),
+	showDirection: state.getIn(['result', 'show_direction']),
 });
 
 const mapDispatchToProps = dispatch => ({

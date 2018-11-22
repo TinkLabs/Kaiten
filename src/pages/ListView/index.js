@@ -1,26 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import list from 'api/list';
+import { withRouter } from 'react-router-dom';
 import Immutable from 'immutable';
-import Restaurant from 'records/Restaurant';
-import RestaurantListItem from './components/RestaurantListItem';
+import RestaurantListItem from './components/Restaurant';
 
 
-class ListView extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			restaurants: Immutable.List(),
-		};
-		list().then(({ restaurants }) => {
-			this.setState({
-				restaurants: Immutable.List(restaurants.map(r => new Restaurant(r))),
-			})
-		})
-	}
-	render() {
-		return this.props.restaurants.map(r => <RestaurantListItem restaurant={r} />);
-	}
+function ListView ({ restaurants, history }) {
+	return restaurants.map(r => (
+		<RestaurantListItem
+			restaurant={r}
+			onClick={() => {
+				history.push(`/restaurants/${r.get('id')}`);
+			}}
+		/>
+	));
 }
 const mapStateToProps = state => ({
 	lat: state.getIn(['device', 'lat']),
@@ -33,4 +26,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListView);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListView));

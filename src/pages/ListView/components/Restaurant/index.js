@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Restaurant from 'records/Restaurant';
-import { Image, Recommendation } from 'components';
+import { Image } from 'components';
+import Recommendation from '../Recommendation';
 import { Distance } from 'containers';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
@@ -11,7 +12,7 @@ function ListItem({ restaurant, ...props }) {
 	return (
 		<button
 			{...props}
-			className={classnames(styles.ListItem, { [styles.hotel]: true })}
+			className={classnames(styles.ListItem, { [styles.hotel]: restaurant.get('in_hotel') })}
 		>
 			<div className={styles.imageWrapper}>
 				<Image src={restaurant.get('cover_image')} size={61} />
@@ -23,7 +24,7 @@ function ListItem({ restaurant, ...props }) {
 			</div>
 			<div className={styles.locationWrapper}>
 				<Recommendation
-					inHotel
+					inHotel={restaurant.get('in_hotel')}
 					staffRecommend
 				/>
 			<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />

@@ -3,16 +3,11 @@ import Android from './Android';
 
 
 export default class {
-	static getLocation () {
+	static getHandyLocation () {
 		if (Android().latitude && Android().longitude) {
 			return {
 				lat: Android().latitude,
 				lng: Android().longitude,
-			};
-		} else if (localStorage.getItem('lat') && localStorage.getItem('lng')) {
-			return {
-				lat: parseFloat(localStorage.getItem('lat')),
-				lng: parseFloat(localStorage.getItem('lng')),
 			};
 		}
 		return { lat: null, lng: null };

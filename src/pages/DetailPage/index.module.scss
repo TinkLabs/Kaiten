@@ -1,0 +1,81 @@
+.Page {
+	background: #fff;
+}
+.images {
+	display: block;
+}
+.contentWrapper {
+	padding: 10px;
+	flex: 1;
+	overflow: hidden;
+	span {
+		display: block;
+	}
+	.name {
+		font-weight: 500;
+		font-size: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.category {
+		font-size: 13px;
+		font-weight: 500;
+		opacity: 0.6;
+	}
+	.district {
+		font-size: 12px;
+		font-weight: 100;
+		opacity: 0.6;
+	}
+}
+.shortDescription {
+	padding: 10px;
+	h1, h2, h3, h4, h5, h6 {
+		display: block;
+		line-height: 1.3;
+		font-size: 15px;
+		font-weight: 500;
+		margin-bottom: 8px;
+		
+	}
+	p, span {
+		font-size: 12px;
+		line-height: 1.3;
+	}
+}
+
+.originName {
+	font-size: 20px;
+	display: inline-block;
+	font-weight: 500;
+	margin-right: 15px;
+}
+.translatedName {
+	font-size: 14px;
+	display: inline-block;
+}
+.phone {
+	display: block;
+	width: 100%;
+	padding: 4px 0;
+	.phoneNumber {
+		font-size: 14px;
+		font-weight: 500;
+	}
+	:global(.icon) {
+		position: absolute;
+		right: 10px;
+		font-size: 20px;
+	}
+}
+.address {
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+.translatedAddress {
+	font-size: 12px;
+	font-weight: 300;
+	margin-bottom: 20px;
+}

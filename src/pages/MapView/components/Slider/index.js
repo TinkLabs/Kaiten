@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import RestaurantMapItem from '../RestaurantMapItem';
+import RestaurantMapItem from '../Restaurant';
 import { Swiper, Slide } from 'react-dynamic-swiper';
-import { updateActiveID, showDirection } from 'modules/active';
+import { updateActiveID, showDirection } from 'modules/result';
 import styles from './index.module.scss';
 
 
@@ -14,21 +15,25 @@ class MapMarker extends React.Component {
 	constructor(props) {
 		super(props);
 		this.setActiveId = this.setActiveId.bind(this);
-		this.onClick = this.onClick.bind(this);
+		this.gotoSlide = this.gotoSlide.bind(this);
+	}
+	componentDidMount() {
+		this.gotoSlide(this.props.activeId, 0);
+	}
+	componentDidUpdate() {
+		this.gotoSlide(this.props.activeId, 300);
 	}
 	setActiveId(id) {
 		this.props.updateActiveID(id);
 	}
-	onClick() {
-		console.log(this.props.activeId);
-	}
-	componentDidUpdate() {
+	gotoSlide(id, speed) {
 		const activeIdIndex = this.props.restaurants
 			.map(r => r.get('id'))
-			.indexOf(this.props.activeId);
+			.indexOf(id);
 		const currentSlide = this.r._swiper.activeIndex;
 		if (activeIdIndex !== currentSlide) {
-			this.r._swiper.slideTo(activeIdIndex);
+			console.log(this.r._swiper);
+			this.r._swiper.slideTo(activeIdIndex, speed);
 		}
 	}
 	render() {
@@ -59,7 +64,9 @@ class MapMarker extends React.Component {
 						<RestaurantMapItem
 							restaurant={r}
 							onClickDirection={this.props.showDirection}
-							onClickDetail={() => { console.log('detail', r);}}
+							onClickDetail={() => {
+								this.props.history.push(`/restaurants/${r.get('id')}`);
+							}}
 						/>
 					</Slide>
 				))}
@@ -79,7 +86,7 @@ MapMarker.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-	activeId: state.getIn(['active', 'id']),
+	activeId: state.getIn(['result', 'id']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -87,4 +94,4 @@ const mapDispatchToProps = dispatch => ({
 	showDirection: bindActionCreators(showDirection, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapMarker);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MapMarker));
