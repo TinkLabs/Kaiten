@@ -42,6 +42,7 @@ const Map = ({
 					onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
 					options={{
 						fullscreenControl: false,
+						disableDefaultUI: true,
 					}}
 				>
 					<MarkerLabel

@@ -21,7 +21,7 @@ const CallToAction = ({ restaurant }) => (
 			(
 				<button
 					onClick={() => {
-						window.open(restaurant.get('url_reservation'));
+						window.open(`olink:${restaurant.get('url_reservation')}`);
 					}}
 				>
 					<span className="icon icon-handyicon-portal-guestservices" />
@@ -35,7 +35,7 @@ const CallToAction = ({ restaurant }) => (
 			(
 				<button
 					onClick={() => {
-						window.open(restaurant.get('url_coupon'));
+						window.open(`olink:${restaurant.get('url_coupon')}`);
 					}}
 				>
 					<span className="icon icon-handy-icon-ticket" />

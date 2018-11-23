@@ -39,7 +39,7 @@ class DetailPage extends Component {
 					<span className={styles.district}>{restaurant.get('area')}</span>
 				</div>
 				<div className={styles.shortDescription}>
-					{renderHtml(restaurant.get('html').split('\r\n').join('<br />'))}
+					{renderHtml(restaurant.get('html').split('\n').join('<br />'))}
 				</div>
 				<CallToAction restaurant={restaurant} />
 				<div className={styles.details}>
@@ -62,11 +62,11 @@ class DetailPage extends Component {
 					</Row>
 					<Row title="Address">
 						<div className={styles.address}>
-							{renderHtml(restaurant.get('untranslated_address').split('\r\n').join('<br />'))}
+							{renderHtml(restaurant.get('untranslated_address').split('\n').join('<br />'))}
 						</div>
 						<div className={styles.translatedAddress}>
 							{restaurant.get('address') === restaurant.get('untranslated_address') ? null
-								: renderHtml(restaurant.get('address').split('\r\n').join('<br />'))}
+								: renderHtml(restaurant.get('address').split('\n').join('<br />'))}
 						</div>
 					</Row>
 					<div>
