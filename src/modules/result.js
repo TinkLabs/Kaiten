@@ -38,15 +38,20 @@ export default (state = initialState, action) => {
 };
 
 export const initRestaurants = (restaurants, currentLat, currentLng) => (dispatch) => {
+	const r = restaurants.sort((a, b) => a.compareTo(b, currentLat, currentLng));
 	dispatch({
 		type: INIT_RESTAURANTS,
-		restaurants: restaurants.sort((a, b) => a.compareTo(b)),
+		restaurants: r,
+	});
+	dispatch({
+		type: UPDATE_ACTIVE_ID,
+		id: r.getIn([0, 'id']),
 	});
 };
 export const addRestaurants = (restaurants, currentLat, currentLng) => (dispatch) => {
 	dispatch({
 		type: ADD_RESTAURANTS,
-		restaurants: restaurants.sort((a, b) => a.compareTo(b)),
+		restaurants: restaurants.sort((a, b) => a.compareTo(b, currentLat, currentLng)),
 	});
 };
 export const updateActiveID = id => (dispatch) => {

@@ -26,7 +26,7 @@ class App extends Component {
 					<Nav />
 					<Controls />
 				</div>
-				<div className={styles.content}>
+				<div className={styles.content} id="content">
 					<Switch>
 						<Route
 							exact

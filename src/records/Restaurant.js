@@ -6,6 +6,7 @@ export default class Restaurant extends Record({
 	id: null,
 	name: '',
 	address: '',
+	price_avg: 0,
 	category: null,
 	area: '',
 	hotel_id: null,
@@ -28,8 +29,10 @@ export default class Restaurant extends Record({
 		if (!obj) return super();
 		super({
 			...obj,
-			in_hotel: parseInt(obj.hotel_id, 10) === parseInt(deviceHotelId, 10),
+			in_hotel: obj.in_hotel || parseInt(obj.hotel_id, 10) === parseInt(deviceHotelId, 10),
 			html: obj.html || '',
+			category: obj.category[0].name,
+			price_avg: obj.budget,
 		});
 	}
 	compareTo(b = new Restaurant(), deviceLat = null, deviceLng = null) {

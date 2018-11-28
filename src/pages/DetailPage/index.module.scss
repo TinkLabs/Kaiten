@@ -59,6 +59,7 @@
 	display: block;
 	width: 100%;
 	padding: 4px 0;
+	height: 20px;
 	.phoneNumber {
 		font-size: 14px;
 		font-weight: 500;
@@ -66,6 +67,7 @@
 	:global(.icon) {
 		position: absolute;
 		right: 10px;
+		top: 0;
 		font-size: 20px;
 	}
 }

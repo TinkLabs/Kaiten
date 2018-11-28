@@ -24,7 +24,6 @@ function MapMarker({restaurant, isActive, ...props}) {
 		<Marker
 			onClick={() => { props.onClick(restaurant); }}
 			position={{ lat: restaurant.get('lat'), lng: restaurant.get('lng') }}
-			animation={window.google.maps.Animation.DROP}
 			icon={isActive ? activeIcon : icon}
 		/>
 	);

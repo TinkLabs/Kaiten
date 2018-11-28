@@ -16,6 +16,7 @@ class MapMarker extends React.Component {
 		super(props);
 		this.setActiveId = this.setActiveId.bind(this);
 		this.gotoSlide = this.gotoSlide.bind(this);
+		this.onClickSlide = this.onClickSlide.bind(this);
 	}
 	componentDidMount() {
 		this.gotoSlide(this.props.activeId, 0);
@@ -36,6 +37,9 @@ class MapMarker extends React.Component {
 			this.r._swiper.slideTo(activeIdIndex, speed);
 		}
 	}
+	onClickSlide() {
+		this.props.history.push(`/restaurants/${this.props.activeId}`);
+	}
 	render() {
 		const { restaurants } = this.props;
 		const params = {
@@ -44,6 +48,7 @@ class MapMarker extends React.Component {
 			width: 300,
 			on: {
 				slideChange: this.onSlideChange,
+				click: this.onClickSlide,
 			}
 		};
 		return (

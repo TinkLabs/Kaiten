@@ -21,11 +21,14 @@ function ListItem({ restaurant, ...props }) {
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
 				<span className={styles.district}>{restaurant.get('area')}</span>
+				{restaurant.get('price_avg') ?
+					<span className={styles.price}>料金： 〜{restaurant.get('price_avg')}円</span>
+				: null}
 			</div>
 			<div className={styles.locationWrapper}>
 				<Recommendation
 					inHotel={restaurant.get('in_hotel')}
-					staffRecommend
+					staffLikeCount={restaurant.get('staff_like_count')}
 				/>
 			<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
 			</div>

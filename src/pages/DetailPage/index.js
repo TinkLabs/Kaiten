@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import renderHtml from 'react-render-html';
 import getRestaurant from 'api/restaurant';
 import Immutable from 'immutable';
@@ -18,7 +19,8 @@ class DetailPage extends Component {
 		this.state = {
 			restaurant: new Restaurant(),
 		};
-		getRestaurant().then(({ restaurant }) => {
+		const id = parseInt(props.match.params.id, 10);
+		getRestaurant(id).then(({ restaurant }) => {
 			this.setState({
 				restaurant: new Restaurant({ ...restaurant, detail_loaded: true }),
 			})
@@ -51,24 +53,29 @@ class DetailPage extends Component {
 							</span>)
 							: null}
 					</Row>
-					<Row title="Phone Number">
-						<button className={styles.phone}>
-							<span className={styles.phoneNumber}>
-								{restaurant.get('tel')}
-								{restaurant.get('idd') ? `(${restaurant.get('idd')})` : null}
-							 </span>
-							<span className="icon icon-handy-icon-phone" />
-						</button>
-					</Row>
-					<Row title="Address">
-						<div className={styles.address}>
-							{renderHtml(restaurant.get('untranslated_address').split('\n').join('<br />'))}
-						</div>
-						<div className={styles.translatedAddress}>
-							{restaurant.get('address') === restaurant.get('untranslated_address') ? null
-								: renderHtml(restaurant.get('address').split('\n').join('<br />'))}
-						</div>
-					</Row>
+					{restaurant.get('tel') ?
+						<Row title="Phone Number">
+							<button className={styles.phone}>
+								<span className={styles.phoneNumber}>
+									{restaurant.get('tel')}
+									{restaurant.get('idd') ? `(${restaurant.get('idd')})` : null}
+								 </span>
+								<span className="icon icon-handy-icon-phone" />
+							</button>
+						</Row> 
+						: null
+					}
+					{restaurant.get('address') ?
+						<Row title="Address">
+							<div className={styles.address}>
+								{renderHtml(restaurant.get('untranslated_address').split('\n').join('<br />'))}
+							</div>
+							<div className={styles.translatedAddress}>
+								{restaurant.get('address') === restaurant.get('untranslated_address') ? null
+									: renderHtml(restaurant.get('address').split('\n').join('<br />'))}
+							</div>
+						</Row>
+						: null }
 					<div>
 						<Map
 							googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=3.exp&libraries=geometry,drawing,places"
@@ -87,7 +94,7 @@ class DetailPage extends Component {
 		);
 	}
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	lat: state.getIn(['device', 'lat']),
 	lng: state.getIn(['device', 'lng']),
 	locationEnabled: state.getIn(['device', 'locationEnabled']),
@@ -98,4 +105,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DetailPage));

@@ -16,6 +16,12 @@
 	font-weight: 300;
 	opacity: 0.6;
 }
+.price {
+	font-size: 12px;
+	font-weight: 500;
+	opacity: 0.8;
+	margin-top: 5px;
+}
 .MapItem {
 	width: 100%;	
 	display: flex;
@@ -44,10 +50,13 @@
 	}
 	.controls {
 		float: right;
+		position: absolute;
+		right: 8px;
+		bottom: 5px;
 		button {
 			color: #fff;
 			font-size: 20px;
-			padding: 10px;
+			padding: 5px;
 		}
 	}
 }

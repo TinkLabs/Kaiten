@@ -12,13 +12,17 @@ class Controls extends React.Component {
 	constructor(props) {
 		super(props);
 		list().then(({ restaurants }) => {
-			this.props.initRestaurants(Immutable.List(restaurants.map(r => new Restaurant(r, props.hotel_id))), props.lat, props.lng);
+			this.props.initRestaurants(Immutable.List(restaurants.map(r => new Restaurant(r, props.hotel_id))), this.props.lat, this.props.lng);
 		});
 	}
+	componentWillUpdate(nextProps, nextState) {
+		console.log(this.props.lat, nextProps.lat);
+		if (!this.props.lat && nextProps.lat) {
+			nextProps.initRestaurants(this.props.restaurants, nextProps.lat, nextProps.lng);
+		}
+	}
 	render() {
-		return (
-			<div className={styles.control}>controls</div>
-		)
+		return null;
 	}
 }
 const mapStateToProps = state => ({

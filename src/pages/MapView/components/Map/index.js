@@ -120,7 +120,7 @@ class Map extends React.Component {
 			<div style={{ height: '100%', position: 'relative' }}>
 				<GoogleMap	
 					ref={(ref) => { this.mapRef = ref; }}
-					defaultZoom={16}
+					defaultZoom={17}
 					defaultCenter={{
 						lat: this.props.lat || Geo.getHandyLocation().lat,
 						lng: this.props.lng || Geo.getHandyLocation().lng,

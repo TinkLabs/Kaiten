@@ -12,6 +12,9 @@ export default function ({ restaurant, onClickDetail, onClickDirection }) {
 			<div className={styles.contentWrapper}>
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
+				{restaurant.get('price_avg') ?
+					<span className={styles.price}>料金： 〜{restaurant.get('price_avg')}円</span>
+				: null}
 				<div className={styles.controls}>
 					<button onClick={onClickDetail}>
 						<span className="icon icon-handy-icon-handychat-template" />
