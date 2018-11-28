@@ -19,6 +19,7 @@ export default class Restaurant extends Record({
 	html: '',
 	tel: null,
 	idd: null,
+	info_opentime: '',
 	untranslated_name: '',
 	untranslated_address: '',
 	url_reservation: '',
@@ -31,8 +32,12 @@ export default class Restaurant extends Record({
 			...obj,
 			in_hotel: obj.in_hotel || parseInt(obj.hotel_id, 10) === parseInt(deviceHotelId, 10),
 			html: obj.html || '',
-			category: obj.category[0].name,
+			category: obj.categories[0].name.replace("'", '').replace("'", ''),
 			price_avg: obj.budget,
+			url_reservation: obj.url_website,
+			untranslated_name: obj.name,
+			untranslated_address: obj.address,
+			html: obj.description,
 		});
 	}
 	compareTo(b = new Restaurant(), deviceLat = null, deviceLng = null) {

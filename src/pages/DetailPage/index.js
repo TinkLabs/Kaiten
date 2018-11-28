@@ -65,6 +65,22 @@ class DetailPage extends Component {
 						</Row> 
 						: null
 					}
+					{restaurant.get('info_opentime') ?
+						<Row title="Opening Hour">
+							<span className={styles.phoneNumber}>
+								{renderHtml(restaurant.get('info_opentime').split('\n').join('<br />'))}
+							</span>
+						</Row> 
+						: null
+					}
+					{restaurant.get('price_avg') ?
+						<Row title="Budget">
+							<span className={styles.phoneNumber}>
+								JPY${restaurant.get('price_avg')}~
+							</span>
+						</Row> 
+						: null
+					}
 					{restaurant.get('address') ?
 						<Row title="Address">
 							<div className={styles.address}>

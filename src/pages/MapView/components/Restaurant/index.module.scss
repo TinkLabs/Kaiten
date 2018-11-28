@@ -5,6 +5,10 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 180px;
 }
 .category {
 	font-size: 12px;
@@ -30,6 +34,9 @@
 	color: #fff;
 	overflow: hidden;
 	margin-bottom: 1px;
+	&.hotel {
+		background: #312f57;
+	}
 	.imageWrapper {
 		padding: 5px;
 	}

@@ -33,7 +33,6 @@ class MapMarker extends React.Component {
 			.indexOf(id);
 		const currentSlide = this.r._swiper.activeIndex;
 		if (activeIdIndex !== currentSlide) {
-			console.log(this.r._swiper);
 			this.r._swiper.slideTo(activeIdIndex, speed);
 		}
 	}
@@ -46,9 +45,9 @@ class MapMarker extends React.Component {
 			slidesPerView: 1,
 			centeredSlides: true,
 			width: 300,
+			clickable: false,
 			on: {
 				slideChange: this.onSlideChange,
-				click: this.onClickSlide,
 			}
 		};
 		return (

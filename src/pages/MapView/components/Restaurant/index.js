@@ -1,18 +1,19 @@
 import React from 'react';
 import { Image } from 'components';
+import classnames from 'classnames';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 
 export default function ({ restaurant, onClickDetail, onClickDirection }) {
 	return (
-		<div className={styles.MapItem}>
+		<div className={classnames(styles.MapItem, { [styles.hotel]: restaurant.get('in_hotel') })}>
 			<div className={styles.imageWrapper}>
 				<Image src={restaurant.get('cover_image')} size={68} />
 			</div>
 			<div className={styles.contentWrapper}>
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
-				{restaurant.get('price_avg') ?
+				{restaurant.get('price_avg') != 0 ?
 					<span className={styles.price}>料金： 〜{restaurant.get('price_avg')}円</span>
 				: null}
 				<div className={styles.controls}>

@@ -37,10 +37,8 @@ navigator.geolocation.getCurrentPosition((position) => {
 		lng: position.coords.longitude,
 	});
 }, (err) => {
-	alert(JSON.stringify(err));
 });
 navigator.geolocation.watchPosition((position) => {
-	console.log(position);
 	store.dispatch({
 		type: 'UPDATE_LAT_LNG',
 		lat: position.coords.latitude,

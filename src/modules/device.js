@@ -5,9 +5,9 @@ export const RESET = 'RESET';
 export const UPDATE_LAT_LNG = 'UPDATE_LAT_LNG';
 
 const initialState = Immutable.Map({
-	lat: null,
-	lng: null,
-	locationEnabled: false,
+	lat: Android().latitude || null,
+	lng: Android().longitude || null,
+	locationEnabled: !!Android().latitude || false,
 	hotel_id: Android().hotel_id,
 });
 

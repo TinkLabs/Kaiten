@@ -97,8 +97,6 @@ class Map extends React.Component {
 				travelMode: window.google.maps.TravelMode.WALKING,
 			}, (result, status) => {
 				if (status === window.google.maps.DirectionsStatus.OK) {
-					console.log(result.routes[0].legs[0].distance);
-					console.log(result.routes[0].legs[0].duration);
 					resolve(result);
 				} else {
 					console.error(`error fetching directions ${result}`);
@@ -108,7 +106,6 @@ class Map extends React.Component {
 		});
 	}
 	setCenter(lat, lng) {
-		if (!this.props.locationEnabled) return;
 		this.mapRef.panTo(new window.google.maps.LatLng(lat, lng));
 	}
 	gotoCurrentLocation() {

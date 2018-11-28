@@ -16,7 +16,6 @@ class Controls extends React.Component {
 		});
 	}
 	componentWillUpdate(nextProps, nextState) {
-		console.log(this.props.lat, nextProps.lat);
 		if (!this.props.lat && nextProps.lat) {
 			nextProps.initRestaurants(this.props.restaurants, nextProps.lat, nextProps.lng);
 		}

@@ -6,7 +6,6 @@ import Unit from 'utils/Unit';
 import styles from './index.module.scss';
 
 function Distance({ lat, lng, deviceLat, deviceLng, locationEnabled }) {
-	console.log(lat, lng, deviceLat, deviceLng);
 	if (!locationEnabled || !lat || !lng || !deviceLat ||!deviceLng) return null;
 	const meter = Geo.getDistance(lat, lng, deviceLat, deviceLng);
 	const distance = Unit.printDistance(meter);
