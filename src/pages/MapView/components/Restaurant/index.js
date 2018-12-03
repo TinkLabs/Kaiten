@@ -13,8 +13,8 @@ export default function ({ restaurant, onClickDetail, onClickDirection }) {
 			<div className={styles.contentWrapper}>
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
-				{restaurant.get('price_avg') != 0 ?
-					<span className={styles.price}>料金： 〜{restaurant.get('price_avg')}円</span>
+				{restaurant.get('budget') != 0 ?
+					<span className={styles.price}>料金： 〜{restaurant.get('budget')}円</span>
 				: null}
 				<div className={styles.controls}>
 					<button onClick={onClickDetail}>

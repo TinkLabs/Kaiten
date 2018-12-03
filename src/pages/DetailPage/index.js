@@ -19,7 +19,7 @@ class DetailPage extends Component {
 		this.state = {
 			restaurant: new Restaurant(),
 		};
-		const id = parseInt(props.match.params.id, 10);
+		const id = props.match.params.id;
 		getRestaurant(id).then(({ restaurant }) => {
 			this.setState({
 				restaurant: new Restaurant({ ...restaurant, detail_loaded: true }),
@@ -56,7 +56,7 @@ class DetailPage extends Component {
 					{restaurant.get('tel') ?
 						<Row title="Phone Number">
 							<button className={styles.phone}>
-								<span className={styles.phoneNumber}>
+								<span className={styles.column}>
 									{restaurant.get('tel')}
 									{restaurant.get('idd') ? `(${restaurant.get('idd')})` : null}
 								 </span>
@@ -67,16 +67,16 @@ class DetailPage extends Component {
 					}
 					{restaurant.get('info_opentime') ?
 						<Row title="Opening Hour">
-							<span className={styles.phoneNumber}>
+							<span className={styles.column}>
 								{renderHtml(restaurant.get('info_opentime').split('\n').join('<br />'))}
 							</span>
 						</Row> 
 						: null
 					}
-					{restaurant.get('price_avg') ?
+					{restaurant.get('budget') ?
 						<Row title="Budget">
-							<span className={styles.phoneNumber}>
-								JPY${restaurant.get('price_avg')}~
+							<span className={styles.column}>
+								JPY${restaurant.get('budget')}~
 							</span>
 						</Row> 
 						: null
@@ -98,8 +98,8 @@ class DetailPage extends Component {
 							loadingElement={loadingDiv}
 							containerElement={loadingDiv}
 							mapElement={loadingDiv}
-							lat={35.6593366}
-							lng={139.7240406}
+							lat={restaurant.get('lat')}
+							lng={restaurant.get('lng')}
 							name={restaurant.get('name')}
 							subtitle={restaurant.get('category')}
 						/>

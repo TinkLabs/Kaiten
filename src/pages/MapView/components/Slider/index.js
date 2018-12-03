@@ -14,7 +14,6 @@ import styles from './index.module.scss';
 class MapMarker extends React.Component {
 	constructor(props) {
 		super(props);
-		this.swiper = React.createRef();
 		this.setActiveId = this.setActiveId.bind(this);
 		this.gotoSlide = this.gotoSlide.bind(this);
 		this.onClickSlide = this.onClickSlide.bind(this);
@@ -32,7 +31,7 @@ class MapMarker extends React.Component {
 		const activeIdIndex = this.props.restaurants
 			.map(r => r.get('id'))
 			.indexOf(id);
-		const currentSlide = this.r._swiper.activeIndex;
+		const currentSlide = this.swiper._swiper.activeIndex;
 		if (activeIdIndex !== currentSlide) {
 			this.swiper._swiper.slideTo(activeIdIndex, speed);
 		}
@@ -53,7 +52,7 @@ class MapMarker extends React.Component {
 		};
 		return (
 			<Swiper
-				ref={this.swiper}
+				ref={(r) => { this.swiper = r; }}
 				swiperOptions={params}
 				navigation={false}
 				pagination={false}

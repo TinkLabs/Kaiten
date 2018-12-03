@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Restaurant from 'records/Restaurant';
-import { Image } from 'components';
+import { Image, Button } from 'components';
 import Recommendation from '../Recommendation';
 import { Distance } from 'containers';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
@@ -10,7 +10,7 @@ import styles from './index.module.scss'; // Import css modules stylesheet as st
 
 function ListItem({ restaurant, ...props }) {
 	return (
-		<button
+		<Button
 			{...props}
 			className={classnames(styles.ListItem, { [styles.hotel]: restaurant.get('in_hotel') })}
 		>
@@ -21,8 +21,8 @@ function ListItem({ restaurant, ...props }) {
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
 				<span className={styles.district}>{restaurant.get('area')}</span>
-				{restaurant.get('price_avg') != 0 ?
-					<span className={styles.price}>料金： 〜{restaurant.get('price_avg')}円</span>
+				{restaurant.get('budget') != 0 ?
+					<span className={styles.price}>料金： 〜{restaurant.get('budget')}円</span>
 				: null}
 			</div>
 			<div className={styles.locationWrapper}>
@@ -32,7 +32,7 @@ function ListItem({ restaurant, ...props }) {
 				/>
 			<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
 			</div>
-		</button>
+		</Button>
 	)
 }
 ListItem.propTypes = {

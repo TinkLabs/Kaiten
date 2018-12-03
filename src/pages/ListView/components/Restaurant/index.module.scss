@@ -31,8 +31,14 @@
 	color: #fff;
 	overflow: hidden;
 	margin-bottom: 1px;
+	&:focus {
+		background: #2d4351;
+	}
 	&.hotel {
 		background: #312f57;
+		&:focus {
+			background: #776288;
+		}
 	}
 	.imageWrapper {
 		padding: 10px;

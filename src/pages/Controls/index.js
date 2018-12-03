@@ -11,13 +11,17 @@ import styles from './index.module.scss';
 class Controls extends React.Component {
 	constructor(props) {
 		super(props);
-		list().then(({ restaurants }) => {
-			this.props.initRestaurants(Immutable.List(restaurants.map(r => new Restaurant(r, props.hotel_id))), this.props.lat, this.props.lng);
-		});
+		if (props.lat && props.lng) {
+			list(props.lat, props.lng).then(({ restaurants }) => {
+				props.initRestaurants(Immutable.List(restaurants.map(r => new Restaurant(r, props.hotel_id))), props.lat, props.lng);
+			});
+		}
 	}
 	componentWillUpdate(nextProps, nextState) {
-		if (!this.props.lat && nextProps.lat) {
-			nextProps.initRestaurants(this.props.restaurants, nextProps.lat, nextProps.lng);
+		if ((!this.props.lat || !this.props.lng) && nextProps.lat && nextProps.lng) {
+			list(nextProps.lat, nextProps.lng).then(({ restaurants }) => {
+				nextProps.initRestaurants(Immutable.List(restaurants.map(r => new Restaurant(r, nextProps.hotel_id))), nextProps.lat, nextProps.lng);
+			});
 		}
 	}
 	render() {
