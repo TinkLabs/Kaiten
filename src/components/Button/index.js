@@ -4,8 +4,7 @@ function Button({ onClick, children, ...props}) {
 	return (
 		<button
 			{...props}
-			onClick={() => {}}
-			onKeyUp={onClick}
+			onClick={() => { setTimeout(onClick, 10); }}
 		>
 			{children}
 		</button>

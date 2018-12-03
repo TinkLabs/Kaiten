@@ -8,7 +8,7 @@ import { scroller, Element } from 'react-scroll';
 import RestaurantListItem from './components/Restaurant';
 
 
-class ListView extends React.Component{
+class ListView extends React.PureComponent{
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -26,6 +26,7 @@ class ListView extends React.Component{
 				activeId: nextProps.activeId,
 			};
 		}
+		return null;
 	}
 	componentDidUpdate(nextProps, nextState) {
 		if (nextState.activeId !== this.state.activeId) {
@@ -63,7 +64,7 @@ const mapStateToProps = state => ({
 	lat: state.getIn(['device', 'lat']),
 	lng: state.getIn(['device', 'lng']),
 	locationEnabled: state.getIn(['device', 'locationEnabled']),
-	restaurants: state.getIn(['result', 'restaurants'], Immutable.List()),
+	restaurants: state.getIn(['result', 'restaurants'], Immutable.OrderedMap()).valueSeq(),
 	activeId: state.getIn(['result', 'id']),
 });
 

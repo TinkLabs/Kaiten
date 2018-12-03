@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import renderHtml from 'react-render-html';
-import getRestaurant from 'api/restaurant';
-import Immutable from 'immutable';
+import { bindActionCreators } from 'redux';
 import Restaurant from 'records/Restaurant';
+import { fetchRestaurant } from 'modules/result';
 import Row from './components/Row';
 import ImageSlider from './components/ImageSlider';
 import CallToAction from './components/CallToAction';
@@ -13,21 +13,14 @@ import Map from './components/Map';
 import styles from './index.module.scss';
 
 const loadingDiv = <div style={{ height: `100%` }} />;
-class DetailPage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			restaurant: new Restaurant(),
-		};
-		const id = props.match.params.id;
-		getRestaurant(id).then(({ restaurant }) => {
-			this.setState({
-				restaurant: new Restaurant({ ...restaurant, detail_loaded: true }),
-			})
-		});
+class DetailPage extends PureComponent {
+	componentDidMount() {
+		if (this.props.restaurant.get('detail_loaded')) return;
+		const id = this.props.match.params.id;
+		this.props.fetchRestaurant(id);
 	}
 	render() {
-		const { restaurant } = this.state;
+		const { restaurant } = this.props;
 		return (
 			<div className={styles.Page}>
 				<div className={styles.images}>
@@ -110,15 +103,20 @@ class DetailPage extends Component {
 		);
 	}
 }
-const mapStateToProps = (state) => ({
-	lat: state.getIn(['device', 'lat']),
-	lng: state.getIn(['device', 'lng']),
-	locationEnabled: state.getIn(['device', 'locationEnabled']),
-	restaurants: state.getIn(['result', 'restaurants'], Immutable.List()),
-});
+const mapStateToProps = (state, ownProps) => {
+	const id = ownProps.match.params.id;
+
+	return {
+		lat: state.getIn(['device', 'lat']),
+		lng: state.getIn(['device', 'lng']),
+		locationEnabled: state.getIn(['device', 'locationEnabled']),
+		restaurants: state.getIn(['result', 'restaurants']),
+		restaurant: state.getIn(['result', 'restaurants', id], new Restaurant()),
+	};
+}
 
 const mapDispatchToProps = dispatch => ({
-
+	fetchRestaurant: bindActionCreators(fetchRestaurant, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DetailPage));

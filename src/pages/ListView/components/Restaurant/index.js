@@ -21,7 +21,7 @@ function ListItem({ restaurant, ...props }) {
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
 				<span className={styles.district}>{restaurant.get('area')}</span>
-				{restaurant.get('budget') != 0 ?
+				{restaurant.get('budget') !== 0 ?
 					<span className={styles.price}>料金： 〜{restaurant.get('budget')}円</span>
 				: null}
 			</div>

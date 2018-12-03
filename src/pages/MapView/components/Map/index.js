@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateActiveID, hideDirection } from 'modules/result';
+import { updateActiveID, hideDirection, fetchRestaurants } from 'modules/result';
 import {
 	withScriptjs,
 	withGoogleMap,
@@ -62,17 +62,21 @@ class Map extends React.Component {
 				directions: null
 			};
 		}
+		return null;
 	}
-	componentDidUpdate() {
+	componentDidMount() {
 		if (this.props.activeId !== this.state.lastActiveId) {
 			this.props.hideDirection();
 			const r = this.props.restaurants.find(r => r.get('id') === this.props.activeId);
+			if (!r) return;
 			this.setCenter(r.get('lat'), r.get('lng'));
 			this.setState({
 				lastActiveId: this.props.activeId,
 			});
 			return;
 		}
+	}
+	componentDidUpdate() {
 		if (this.props.showDirection && !this.state.directions) {
 			const r = this.props.restaurants.find(r => r.get('id') === this.props.activeId);
 			this.getNewDirections(r).then((directions) => {
@@ -112,6 +116,11 @@ class Map extends React.Component {
 		if (!this.props.locationEnabled) return;
 		this.setCenter(this.props.lat, this.props.lng);
 	}
+	fetchRestaurants = () => {
+		const lat = this.mapRef.getCenter().lat();
+		const lng = this.mapRef.getCenter().lng();
+		this.props.fetchRestaurants(lat, lng);
+	}
 	render() {
 		return (
 			<div style={{ height: '100%', position: 'relative' }}>
@@ -123,6 +132,7 @@ class Map extends React.Component {
 						lng: this.props.lng || Geo.getHandyLocation().lng,
 					}}
 					options={mapOptions}
+					onDragEnd={this.fetchRestaurants}
 				>
 					{this.props.locationEnabled ? <CurrentLocationMarker /> : null}
 					<MarkerClusterer
@@ -151,12 +161,12 @@ class Map extends React.Component {
 MapMarker.propTypes = {
 	restaurants: PropTypes.instanceOf(Immutable.List),
 	onClick: PropTypes.func,
-	activeId: PropTypes.number,
+	activeId: PropTypes.string,
 };
 MapMarker.defaultProps = {
 	restaurants: Immutable.List(),
 	onClick: () => {},
-	activeId: 0,
+	activeId: '',
 };
 
 const mapStateToProps = state => ({
@@ -170,6 +180,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	updateActiveID: bindActionCreators(updateActiveID, dispatch),
 	hideDirection: bindActionCreators(hideDirection, dispatch),
+	fetchRestaurants: bindActionCreators(fetchRestaurants, dispatch),
 
 });
 export default withScriptjs(withGoogleMap(connect(mapStateToProps, mapDispatchToProps)(Map)));

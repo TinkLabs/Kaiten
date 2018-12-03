@@ -1,8 +1,10 @@
 import axios from './axios';
+import Immutable from 'immutable';
+import Restaurant from 'records/Restaurant';
 
 const GET_RESTAURANT_BY_LAT_LNG = (lat, lng) => `
 	query {
-		restaurants (lat: ${lat}, lng: ${lng}, limit: 30) {
+		restaurants (lat: ${lat.toFixed(5)}, lng: ${lng.toFixed(5)}, limit: 30) {
 			_id
 			name
 			address
@@ -32,7 +34,11 @@ export default function(lat, lng) {
 	return axios
 		.post('', { query: GET_RESTAURANT_BY_LAT_LNG(lat, lng) })
 		.then(result => {
-			console.log(result)
-			return result.data.data;
+			const mapping = result.data.data.restaurants.reduce((obj, item) => {
+				const r = new Restaurant(item);
+				obj[r.get('id')] = r;
+				return obj
+			}, {})
+			return Immutable.OrderedMap(mapping);
 		});
 }

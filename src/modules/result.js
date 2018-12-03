@@ -1,14 +1,17 @@
 import Immutable from 'immutable';
+import list from 'api/list';
+import restaurant from 'api/restaurant';
+
 export const RESET = 'RESET';
 export const INIT_RESTAURANTS = 'INIT_RESTAURANTS';
 export const ADD_RESTAURANTS = 'ADD_RESTAURANTS';
 export const UPDATE_ACTIVE_ID = 'UPDATE_ACTIVE_ID';
 export const UPDATE_DIRECTION = 'UPDATE_DIRECTION';
+export const UPDATE_RESTAURANT = 'UPDATE_RESTAURANT';
 
 
 const initialState = Immutable.Map({
-	restaurants: Immutable.List(),
-	restaurantIds: Immutable.List(),
+	restaurants: Immutable.OrderedMap(),
 	id: 1,
 	show_direction: false,
 });
@@ -18,16 +21,16 @@ export default (state = initialState, action) => {
 		case RESET:
 			return initialState;
 		case INIT_RESTAURANTS:
-			return state
-				.set('restaurants', action.restaurants)
-				.set('restaurantIds', action.restaurants.map(r => r.get('id')));
+			return state.set('restaurants', action.restaurants);
 		case ADD_RESTAURANTS:
 			// exclude duplication
 			const filteredRestaurant = action.restaurants
-				.filter(r => !state.get('restaurantIds').includes(r.get('id')));
+				.filter(r => !state.get('restaurants').keySeq().includes(r.get('id')));
 			return state
-				.update('restaurants', list => list.push(filteredRestaurant))
-				.update('restaurantIds', list => list.push(filteredRestaurant.map(r => r.get('id'))));
+				.update('restaurants', map => map.concat(filteredRestaurant));
+		case UPDATE_RESTAURANT:
+			return state
+				.update('restaurants', map => map.set(action.id, action.restaurant));
 		case UPDATE_ACTIVE_ID:
 			return state.set('id', action.id);
 		case UPDATE_DIRECTION:
@@ -37,23 +40,6 @@ export default (state = initialState, action) => {
 	}
 };
 
-export const initRestaurants = (restaurants, currentLat, currentLng) => (dispatch) => {
-	const r = restaurants.sort((a, b) => a.compareTo(b, currentLat, currentLng));
-	dispatch({
-		type: INIT_RESTAURANTS,
-		restaurants: r,
-	});
-	dispatch({
-		type: UPDATE_ACTIVE_ID,
-		id: r.getIn([0, 'id']),
-	});
-};
-export const addRestaurants = (restaurants, currentLat, currentLng) => (dispatch) => {
-	dispatch({
-		type: ADD_RESTAURANTS,
-		restaurants: restaurants.sort((a, b) => a.compareTo(b, currentLat, currentLng)),
-	});
-};
 export const updateActiveID = id => (dispatch) => {
 	dispatch({
 		type: UPDATE_ACTIVE_ID,
@@ -71,4 +57,28 @@ export const hideDirection = () => (dispatch) => {
 		type: UPDATE_DIRECTION,
 		value: false,
 	});
+};
+export const fetchRestaurants = (currentLat, currentLng) => (dispatch) => {
+	list(currentLat, currentLng)
+		.then((restaurants) => {
+			const r = restaurants.sort((a, b) => a.compareTo(b, currentLat, currentLng));
+			dispatch({
+				type: INIT_RESTAURANTS,
+				restaurants: r,
+			});
+			dispatch({
+				type: UPDATE_ACTIVE_ID,
+				id: r.valueSeq().getIn([0, 'id']),
+			});
+		});
+};
+export const fetchRestaurant = (id) => (dispatch) => {
+	restaurant(id)
+		.then((restaurant) => {
+			dispatch({
+				type: UPDATE_RESTAURANT,
+				id: restaurant.get('id'),
+				restaurant,
+			});
+		});
 };

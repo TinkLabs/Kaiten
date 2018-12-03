@@ -1,4 +1,5 @@
 import axios from './axios';
+import Restaurant from 'records/Restaurant';
 
 const GET_RESTAURANT_BY_ID = (_id) => `
 	query {
@@ -43,6 +44,6 @@ export default function(id) {
 		.post('', { query: GET_RESTAURANT_BY_ID(id) })
 		.then(result => {
 			console.log(result)
-			return { restaurant: result.data.data.restaurants[0] };
+			return new Restaurant({...result.data.data.restaurants[0], detail_loaded: true});
 		});
 }

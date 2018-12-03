@@ -52,7 +52,7 @@ class MapMarker extends React.Component {
 		};
 		return (
 			<Swiper
-				ref={(r) => { this.swiper = r; }}
+				ref={(r) => { 	this.swiper = r; }}
 				swiperOptions={params}
 				navigation={false}
 				pagination={false}
