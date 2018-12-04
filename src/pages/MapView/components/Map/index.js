@@ -170,8 +170,8 @@ MapMarker.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-	lat: state.getIn(['device', 'lat']),
-	lng: state.getIn(['device', 'lng']),
+	lat: state.getIn(['result', 'lat']) || state.getIn(['device', 'lat']),
+	lng: state.getIn(['result', 'lng']) || state.getIn(['device', 'lng']),
 	locationEnabled: state.getIn(['device', 'locationEnabled']),
 	activeId: state.getIn(['result', 'id']),
 	showDirection: state.getIn(['result', 'show_direction']),

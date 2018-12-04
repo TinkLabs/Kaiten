@@ -8,12 +8,15 @@ export const ADD_RESTAURANTS = 'ADD_RESTAURANTS';
 export const UPDATE_ACTIVE_ID = 'UPDATE_ACTIVE_ID';
 export const UPDATE_DIRECTION = 'UPDATE_DIRECTION';
 export const UPDATE_RESTAURANT = 'UPDATE_RESTAURANT';
+export const UPDATE_RESULT_LAT_LNG = 'UPDATE_RESULT_LAT_LNG';
 
 
 const initialState = Immutable.Map({
 	restaurants: Immutable.OrderedMap(),
 	id: 1,
 	show_direction: false,
+	lat: null,
+	lng: null,
 });
 
 export default (state = initialState, action) => {
@@ -35,6 +38,8 @@ export default (state = initialState, action) => {
 			return state.set('id', action.id);
 		case UPDATE_DIRECTION:
 			return state.set('show_direction', action.value);
+		case UPDATE_RESULT_LAT_LNG:
+			return state.set('lat', action.lat).set('lng', action.lng);
 		default:
 			return state;
 	}
@@ -69,6 +74,11 @@ export const fetchRestaurants = (currentLat, currentLng) => (dispatch) => {
 			dispatch({
 				type: UPDATE_ACTIVE_ID,
 				id: r.valueSeq().getIn([0, 'id']),
+			});
+			dispatch({
+				type: UPDATE_RESULT_LAT_LNG,
+				lat: currentLat,
+				lng: currentLng,
 			});
 		});
 };
