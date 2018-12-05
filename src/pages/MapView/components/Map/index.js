@@ -36,6 +36,7 @@ class Map extends React.Component {
 		this.state = {
 			directions: null,
 			lastActiveId: null,
+			zoom: 18,
 		};
 		this.mapRef = null;
 		this.onClick = this.onClick.bind(this);
@@ -117,25 +118,33 @@ class Map extends React.Component {
 		const lng = this.mapRef.getCenter().lng();
 		this.props.fetchRestaurants(lat, lng);
 	}
+	updateZoom = (zoom) => {
+		this.setState({
+			zoom,
+		});
+	}
 	render() {
 		return (
 			<div style={{ height: '100%', position: 'relative' }}>
 				{this.props.resultLat && this.props.resultLng ? 
 					<GoogleMap	
 						ref={(ref) => { this.mapRef = ref; }}
-						defaultZoom={17}
+						maxZoom={19}
+						defaultZoom={this.state.zoom}
 						defaultCenter={{
 							lat: this.props.resultLat,
 							lng: this.props.resultLng,
 						}}
 						options={mapOptions}
 						onDragEnd={this.fetchRestaurants}
+						onZoomChanged={this.updateZoom}
 					>
 						{this.props.locationEnabled ? <CurrentLocationMarker /> : null}
 						<MarkerClusterer
 							averageCenter
 							enableRetinaIcons
 							gridSize={5}
+							defaultMaxZoom={19}
 						>
 							{this.props.restaurants.valueSeq().map(r => (
 								<MapMarker

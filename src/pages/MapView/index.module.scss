@@ -8,4 +8,7 @@
 .MapView {
 	height: 100%;
 	position: relative;
+	:global(.swiper-slide) {
+		width: 300px;
+	}
 }
