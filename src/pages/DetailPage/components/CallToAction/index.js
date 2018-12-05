@@ -1,4 +1,6 @@
 import React from 'react';
+import t from 'translation';
+
 import styles from './index.module.scss';
 
 const CallToAction = ({ restaurant }) => (
@@ -12,8 +14,8 @@ const CallToAction = ({ restaurant }) => (
 				>
 					<span className="icon icon-handy-icon-phone" />
 					<div>
-						<h2>Call {restaurant.get('tel')}</h2>
-						<p>*Please note that inquiry by phone may only be available in Japanese.</p>
+						<h2>{t('Call %{tel}', { tel: restaurant.get('tel')})}</h2>
+						<p>{t('*Please note that inquiry by phone may only be available in Japanese.')}</p>
 					</div>
 				</button>
 			) : null}
@@ -26,7 +28,7 @@ const CallToAction = ({ restaurant }) => (
 				>
 					<span className="icon icon-handyicon-portal-guestservices" />
 					<div>
-						<h2>Online Reservation</h2>
+						<h2>{t('Online Reservation')}</h2>
 						<h2>({new URL(restaurant.get('url_reservation')).hostname})</h2>
 					</div>
 				</button>
@@ -40,8 +42,8 @@ const CallToAction = ({ restaurant }) => (
 				>
 					<span className="icon icon-handy-icon-ticket" />
 					<div>
-						<h2>Get to Coupon</h2>
-						<p>Save your budget up to 10%</p>
+						<h2>{t('Get to Coupon')}</h2>
+						<p>{t('Save your budget up to 10%')}</p>
 					</div>
 				</button>
 			) : null}
@@ -53,7 +55,7 @@ const CallToAction = ({ restaurant }) => (
 		>
 			<span className="icon icon-handy-icon-map" />
 			<div>
-				<h2>Direction</h2>
+				<h2>{t('Direction')}</h2>
 			</div>
 		</button>
 	</div>

@@ -2,16 +2,17 @@ import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
+import t from 'translation';
 import styles from './index.module.scss';
 
 
 const Nav = () => (
 	<div className={styles.div}>
-		<span className={styles.title}>handy Restaurants</span>
+		<span className={styles.title}>{t('handy Restaurants')}</span>
 		<NavLink exact to="/map" activeStyle={{display: 'none'}}>
-			Map View
+			{t('Map View')}
 		</NavLink>
-		<NavLink exact to="/" activeStyle={{display: 'none'}}>List View</NavLink>
+		<NavLink exact to="/" activeStyle={{display: 'none'}}>{t('List View')}</NavLink>
 	</div>
 );
 const mapStateToProps = state => ({

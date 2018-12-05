@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'; 
 import { fetchRestaurants } from 'modules/result';
 import Immutable from 'immutable';
+import t from 'translation';
 import styles from './index.module.scss';
 
 
@@ -19,7 +20,7 @@ class Controls extends React.Component {
 		}
 	}
 	render() {
-		return null;
+		return <div></div>;
 	}
 }
 const mapStateToProps = state => ({

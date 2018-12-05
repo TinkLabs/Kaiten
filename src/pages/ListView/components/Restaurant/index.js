@@ -5,6 +5,8 @@ import Restaurant from 'records/Restaurant';
 import { Image, Button } from 'components';
 import Recommendation from '../Recommendation';
 import { Distance } from 'containers';
+import t from 'translation';
+
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 
@@ -22,7 +24,12 @@ function ListItem({ restaurant, ...props }) {
 				<span className={styles.category}>{restaurant.get('category')}</span>
 				<span className={styles.district}>{restaurant.get('area')}</span>
 				{restaurant.get('budget') !== 0 ?
-					<span className={styles.price}>料金： 〜{restaurant.get('budget')}円</span>
+					<span className={styles.price}>
+						{t('Budget: %{currency_symbol}%{budget}~', {
+							currency_symbol: '$',
+							budget: restaurant.get('budget'),
+						})}
+					</span>
 				: null}
 			</div>
 			<div className={styles.locationWrapper}>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image } from 'components';
 import classnames from 'classnames';
+import t from 'translation';
+
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 
@@ -14,7 +16,12 @@ export default function ({ restaurant, onClickDetail, onClickDirection }) {
 				<span className={styles.name}>{restaurant.get('name')}</span>
 				<span className={styles.category}>{restaurant.get('category')}</span>
 				{restaurant.get('budget') !== 0 ?
-					<span className={styles.price}>料金： 〜{restaurant.get('budget')}円</span>
+					<span className={styles.price}>
+						{t('Budget: %{currency_symbol}%{budget}~', {
+							currency_symbol: '$',
+							budget: restaurant.get('budget'),
+						})}
+					</span>
 				: null}
 				<div className={styles.controls}>
 					<button onClick={onClickDetail}>

@@ -7,12 +7,14 @@ import Restaurant from 'records/Restaurant';
 import { fetchRestaurant } from 'modules/result';
 import Row from './components/Row';
 import ImageSlider from './components/ImageSlider';
+import t from 'translation';
 import CallToAction from './components/CallToAction';
 
 import Map from './components/Map';
 import styles from './index.module.scss';
 
 const loadingDiv = <div style={{ height: `100%` }} />;
+
 class DetailPage extends PureComponent {
 	componentDidMount() {
 		if (this.props.restaurant.get('detail_loaded')) return;
@@ -38,7 +40,7 @@ class DetailPage extends PureComponent {
 				</div>
 				<CallToAction restaurant={restaurant} />
 				<div className={styles.details}>
-					<Row title="Restaurant Name">
+					<Row title={t('Restaurant Name')}>
 						<span className={styles.originName}>{restaurant.get('untranslated_name')}</span>
 						{restaurant.get('untranslated_name') !== restaurant.get('name') ?
 							(<span className={styles.translatedName}>
@@ -47,7 +49,7 @@ class DetailPage extends PureComponent {
 							: null}
 					</Row>
 					{restaurant.get('tel') ?
-						<Row title="Phone Number">
+						<Row title={t('Phone Number')}>
 							<button className={styles.phone}>
 								<span className={styles.column}>
 									{restaurant.get('tel')}
@@ -59,7 +61,7 @@ class DetailPage extends PureComponent {
 						: null
 					}
 					{restaurant.get('info_opentime') ?
-						<Row title="Opening Hour">
+						<Row title={t('Opening Hour')}>
 							<span className={styles.column}>
 								{renderHtml(restaurant.get('info_opentime').split('\n').join('<br />'))}
 							</span>
@@ -67,7 +69,7 @@ class DetailPage extends PureComponent {
 						: null
 					}
 					{restaurant.get('budget') ?
-						<Row title="Budget">
+						<Row title={t('Budget')}>
 							<span className={styles.column}>
 								JPY${restaurant.get('budget')}~
 							</span>
@@ -75,7 +77,7 @@ class DetailPage extends PureComponent {
 						: null
 					}
 					{restaurant.get('address') ?
-						<Row title="Address">
+						<Row title={t('Address')}>
 							<div className={styles.address}>
 								{renderHtml(restaurant.get('untranslated_address').split('\n').join('<br />'))}
 							</div>
@@ -86,7 +88,7 @@ class DetailPage extends PureComponent {
 						</Row>
 						: null }
 					<div>
-						<Map
+						{/* <Map
 							googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=3.exp&libraries=geometry,drawing,places"
 							loadingElement={loadingDiv}
 							containerElement={loadingDiv}
@@ -95,7 +97,7 @@ class DetailPage extends PureComponent {
 							lng={restaurant.get('lng')}
 							name={restaurant.get('name')}
 							subtitle={restaurant.get('category')}
-						/>
+						/> */}
 					</div>
 				</div>
 					

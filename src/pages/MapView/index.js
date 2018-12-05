@@ -21,7 +21,7 @@ const MapView = ({ restaurants }) => (
 	</div>
 );
 const mapStateToProps = state => ({
-	restaurants: state.getIn(['result', 'restaurants'], Immutable.OrderedMap()).valueSeq(),
+	restaurants: state.getIn(['result', 'restaurants'], Immutable.OrderedMap()),
 });
 
 const mapDispatchToProps = dispatch => ({

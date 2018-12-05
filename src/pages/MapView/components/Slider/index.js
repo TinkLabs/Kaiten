@@ -29,7 +29,7 @@ class MapMarker extends React.Component {
 	}
 	gotoSlide(id, speed) {
 		const activeIdIndex = this.props.restaurants
-			.map(r => r.get('id'))
+			.keySeq()
 			.indexOf(id);
 		const currentSlide = this.swiper._swiper.activeIndex;
 		if (activeIdIndex !== currentSlide) {
@@ -57,7 +57,7 @@ class MapMarker extends React.Component {
 				navigation={false}
 				pagination={false}
 			> 
-				{restaurants.map(r => (
+				{restaurants.valueSeq().map(r => (
 					<Slide
 						key={`frame-${r.get('id')}`}
 						className={styles.itemWrapper}
@@ -79,13 +79,13 @@ class MapMarker extends React.Component {
 	}
 }
 MapMarker.propTypes = {
-	restaurants: PropTypes.instanceOf(Immutable.List),
-	activeId: PropTypes.number,
+	restaurants: PropTypes.instanceOf(Immutable.OrderedMap),
+	activeId: PropTypes.string,
 	updateActiveID: PropTypes.func,
 };
 MapMarker.defaultProps = {
-	restaurants: Immutable.List(),
-	activeId: 0,
+	restaurants: Immutable.OrderedMap(),
+	activeId: '',
 	updateActiveID: () => {},
 };
 

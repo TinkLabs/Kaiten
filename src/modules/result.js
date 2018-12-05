@@ -13,7 +13,7 @@ export const UPDATE_RESULT_LAT_LNG = 'UPDATE_RESULT_LAT_LNG';
 
 const initialState = Immutable.Map({
 	restaurants: Immutable.OrderedMap(),
-	id: 1,
+	id: null,
 	show_direction: false,
 	lat: null,
 	lng: null,
