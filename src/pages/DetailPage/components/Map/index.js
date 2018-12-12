@@ -30,7 +30,12 @@ const Map = ({
 	};
 	return (
 		<div className={styles.mapContainer}>
-			<div className={styles.map}>
+			<button
+				className={styles.map} 
+				nClick={() => {
+					window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
+				}}
+			>
 				<GoogleMapReact
 					bootstrapURLKeys={{ key: 'AIzaSyBwuj7BZgdtuQgjZnbhFfqmUWRK2Lq_Jc8' }}
 					defaultCenter={{
@@ -51,7 +56,7 @@ const Map = ({
 						subtitle={subtitle}
 					/>
 				</GoogleMapReact>
-			</div>
+			</button>
 		</div>
 	);
 };

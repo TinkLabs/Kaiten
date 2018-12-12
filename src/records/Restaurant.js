@@ -31,8 +31,9 @@ export default class Restaurant extends Record({
 		super({
 			...obj,
 			id: obj._id,
-			in_hotel: obj.in_hotel || parseInt(obj.hotel_id, 10) === parseInt(deviceHotelId, 10),
-			category: obj.categories ? obj.categories[0].name : '',
+			hotel_id: obj.hotel._id,
+			in_hotel: obj.in_hotel || parseInt(obj.hotel._id, 10) === parseInt(deviceHotelId, 10),
+			category: obj.categories && obj.categories.length ? obj.categories[0].name : '',
 			budget: parseInt(obj.budget, 10),
 			area: obj.areas ? obj.areas[0].name : '',
 			url_reservation: obj.url_website,

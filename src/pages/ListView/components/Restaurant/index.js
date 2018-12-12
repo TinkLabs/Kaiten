@@ -5,6 +5,7 @@ import Restaurant from 'records/Restaurant';
 import { Image, Button } from 'components';
 import Recommendation from '../Recommendation';
 import { Distance } from 'containers';
+import defaultImg from './default.svg';
 import t from 'translation';
 
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
@@ -17,7 +18,7 @@ function ListItem({ restaurant, ...props }) {
 			className={classnames(styles.ListItem, { [styles.hotel]: restaurant.get('in_hotel') })}
 		>
 			<div className={styles.imageWrapper}>
-				<Image src={restaurant.get('cover_image')} size={61} />
+				<Image src={restaurant.get('cover_image') || defaultImg} size={61} />
 			</div>
 			<div className={styles.contentWrapper}>
 				<span className={styles.name}>{restaurant.get('name')}</span>

@@ -15,13 +15,13 @@ const params = {
 	centeredSlides: true,
 };
 
-const Slider = ({ images }) => (
+const Slider = ({ images = [] }) => (
 	<Swiper
 		swiperOptions={params}
 		navigation={false}
 		pagination={false}
 	> 
-		{images.map((img, i) => (
+		{images && images.map((img, i) => (
 			<Slide
 				key={`img-${i}`}
 				className={styles.itemWrapper}

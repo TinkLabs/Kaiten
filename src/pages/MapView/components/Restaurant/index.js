@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'components';
 import classnames from 'classnames';
 import t from 'translation';
-
+import defaultImg from './default.svg';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 
 
@@ -10,7 +10,7 @@ export default function ({ restaurant, onClickDetail, onClickDirection }) {
 	return (
 		<div className={classnames(styles.MapItem, { [styles.hotel]: restaurant.get('in_hotel') })}>
 			<div className={styles.imageWrapper}>
-				<Image src={restaurant.get('cover_image')} size={68} />
+				<Image src={restaurant.get('cover_image') || defaultImg} size={68} />
 			</div>
 			<div className={styles.contentWrapper}>
 				<span className={styles.name}>{restaurant.get('name')}</span>
@@ -25,10 +25,10 @@ export default function ({ restaurant, onClickDetail, onClickDirection }) {
 				: null}
 				<div className={styles.controls}>
 					<button onClick={onClickDetail}>
-						<span className="icon icon-handy-icon-handychat-template" />
+						<span className="icon icon-handy-icon-details" />
 					</button>
 					<button onClick={onClickDirection}>
-						<span className="icon icon-handy-icon-sent" />
+						<span className="icon icon-handy-icon-route" />
 					</button>
 				</div>
 			</div>

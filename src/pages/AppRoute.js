@@ -7,6 +7,7 @@ import ListView from './ListView';
 import Controls from './Controls';
 import Nav from './Nav';
 import DetailPage from './DetailPage';
+import { Highlight } from 'components';
 
 import styles from './index.module.scss';
 

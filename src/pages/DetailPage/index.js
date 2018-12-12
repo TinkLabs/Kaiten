@@ -88,7 +88,7 @@ class DetailPage extends PureComponent {
 						</Row>
 						: null }
 					<div>
-						{/* <Map
+						<Map
 							googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=3.exp&libraries=geometry,drawing,places"
 							loadingElement={loadingDiv}
 							containerElement={loadingDiv}
@@ -97,7 +97,7 @@ class DetailPage extends PureComponent {
 							lng={restaurant.get('lng')}
 							name={restaurant.get('name')}
 							subtitle={restaurant.get('category')}
-						/> */}
+						/>
 					</div>
 				</div>
 					

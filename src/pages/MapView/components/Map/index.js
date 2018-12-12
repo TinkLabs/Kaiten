@@ -9,7 +9,6 @@ import {
 	withGoogleMap,
 	GoogleMap,
 	DirectionsRenderer} from 'react-google-maps';
-import Geo from 'utils/Geo';
 import MapMarker from '../MapMarker';
 import CurrentLocationMarker from '../CurrentLocationMarker';
 import styles from './index.module.scss';
@@ -75,9 +74,19 @@ class Map extends React.Component {
 				});
 			});
 		}
+		if (nextProps.activeId !== nextState.lastActiveId) {
+			if (this.props.restaurants !== nextProps.restaurants) return;
+			const r = nextProps.restaurants.get(nextProps.activeId);
+			if (!r) return true;
+			const shouleUpdateCenter = this.isOutBound(r.get('lat'), r.get('lng'));
+			if (shouleUpdateCenter) this.setCenter(r.get('lat'), r.get('lng'));
+		}
 		return true;
 	}
-	
+	isOutBound = (lat, lng) => {
+		if (!lat || !lng || !this.mapRef) return false;
+		return !this.mapRef.getBounds().contains({ lat, lng });
+	}
 	onClick(r) {
 		this.setState({
 			directions: null,
@@ -106,6 +115,7 @@ class Map extends React.Component {
 		});
 	}
 	setCenter(lat, lng) {
+		if (!this.mapRef) return;
 		this.mapRef.panTo(new window.google.maps.LatLng(lat, lng));
 	}
 	gotoCurrentLocation() {
@@ -124,6 +134,17 @@ class Map extends React.Component {
 		});
 	}
 	render() {
+		let latlng = {
+			lat: this.props.resultLat,
+			lng: this.props.resultLng,
+		};
+		const r = this.props.restaurants.get(this.props.activeId);
+		if (r) {
+			latlng = {
+				lat: r.get('lat'),
+				lng: r.get('lng'),
+			};
+		};
 		return (
 			<div style={{ height: '100%', position: 'relative' }}>
 				{this.props.resultLat && this.props.resultLng ? 
@@ -131,21 +152,13 @@ class Map extends React.Component {
 						ref={(ref) => { this.mapRef = ref; }}
 						maxZoom={19}
 						defaultZoom={this.state.zoom}
-						defaultCenter={{
-							lat: this.props.resultLat,
-							lng: this.props.resultLng,
-						}}
+						defaultCenter={latlng}
 						options={mapOptions}
 						onDragEnd={this.fetchRestaurants}
 						onZoomChanged={this.updateZoom}
 					>
 						{this.props.locationEnabled ? <CurrentLocationMarker /> : null}
-						<MarkerClusterer
-							averageCenter
-							enableRetinaIcons
-							gridSize={5}
-							defaultMaxZoom={19}
-						>
+						
 							{this.props.restaurants.valueSeq().map(r => (
 								<MapMarker
 									key={`key-map-marker-${r.get('id')}`}
@@ -153,7 +166,6 @@ class Map extends React.Component {
 									restaurant={r}
 									onClick={() => { this.onClick(r); }}
 								/>))}
-						</MarkerClusterer>
 						{this.state.directions && <DirectionsRenderer directions={this.state.directions} options={{suppressMarkers: true}} />}
 					</GoogleMap>
 					: null}
