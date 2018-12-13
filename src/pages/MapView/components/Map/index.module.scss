@@ -1,18 +1,24 @@
 .btnLocation {
 	position: absolute;
 	bottom: 110px;
-	right: 20px;
-	width: 24px;
-	height: 24px;
-	line-height: 24px;
-	opacity: 0.8;
-	border-radius: 20px;
-	background: #000f23;
+	right: 10px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	opacity: 1;
+	border-radius: 6px;
+	background: #fff;
 	z-index: 1;
 	text-align: center;
 	:global(.icon) {
-		color: #fff;
-		font-size: 14px;
-		line-height: 25px;
+		color: #C4C4C4;
+		font-size: 18px;
+		line-height: 18px;
+	}
+	&.active {
+		background: #00A3FF;
+		:global(.icon) {
+			color: #fff;
+		}
 	}
 }

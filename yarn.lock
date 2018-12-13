@@ -4114,7 +4114,7 @@ handlebars@^4.0.3:
 
 "handy-font@ssh://git@github.com/TinkLabs/handy-font#master":
   version "1.0.1"
-  resolved "ssh://git@github.com/TinkLabs/handy-font#47fdf1c88e151f97d0a49e6c32419bc4f113a667"
+  resolved "ssh://git@github.com/TinkLabs/handy-font#8e63066d8235e5a01999f8f2fc5120b3294faa04"
 
 har-schema@^2.0.0:
   version "2.0.0"

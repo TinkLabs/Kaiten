@@ -13,6 +13,7 @@ export const UPDATE_RESULT_LAT_LNG = 'UPDATE_RESULT_LAT_LNG';
 
 const initialState = Immutable.Map({
 	restaurants: Immutable.OrderedMap(),
+	cached_restaurant: Immutable.Map(),
 	id: null,
 	show_direction: false,
 	lat: null,
@@ -24,7 +25,9 @@ export default (state = initialState, action) => {
 		case RESET:
 			return initialState;
 		case INIT_RESTAURANTS:
-			return state.set('restaurants', action.restaurants);
+			return state
+				.set('restaurants', action.restaurants)
+				.update('cached_restaurant', map => map.concat(action.restaurants));
 		case ADD_RESTAURANTS:
 			// exclude duplication
 			const filteredRestaurant = action.restaurants
@@ -33,7 +36,8 @@ export default (state = initialState, action) => {
 				.update('restaurants', map => map.concat(filteredRestaurant));
 		case UPDATE_RESTAURANT:
 			return state
-				.update('restaurants', map => map.set(action.id, action.restaurant));
+				.setIn(['restaurants', action.id], action.restaurant)
+				.setIn(['cached_restaurant', action.id], action.restaurant);
 		case UPDATE_ACTIVE_ID:
 			return state.set('id', action.id);
 		case UPDATE_DIRECTION:

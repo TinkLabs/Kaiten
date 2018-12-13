@@ -12,7 +12,7 @@ const CallToAction = ({ restaurant }) => (
 						window.open(`tel:${restaurant.get('tel')}`);
 					}}
 				>
-					<span className="icon icon-handy-icon-phone" />
+					<span className="icon icon-handy-icon-phone-solid" />
 					<div>
 						<h2>{t('Call %{tel}', { tel: restaurant.get('tel')})}</h2>
 						<p>{t('*Please note that inquiry by phone may only be available in Japanese.')}</p>
@@ -26,7 +26,7 @@ const CallToAction = ({ restaurant }) => (
 						window.open(`olink:${restaurant.get('url_reservation')}`);
 					}}
 				>
-					<span className="icon icon-handyicon-portal-guestservices" />
+					<span className="icon icon-handy-icon-reservation" />
 					<div>
 						<h2>{t('Online Reservation')}</h2>
 						<h2>({new URL(restaurant.get('url_reservation')).hostname})</h2>
@@ -40,7 +40,7 @@ const CallToAction = ({ restaurant }) => (
 						window.open(`olink:${restaurant.get('url_coupon')}`);
 					}}
 				>
-					<span className="icon icon-handy-icon-ticket" />
+					<span className="icon icon-handy-icon-coupon" />
 					<div>
 						<h2>{t('Get to Coupon')}</h2>
 						<p>{t('Save your budget up to 10%')}</p>
@@ -53,7 +53,7 @@ const CallToAction = ({ restaurant }) => (
 				window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
 			}}
 		>
-			<span className="icon icon-handy-icon-map" />
+			<span className="icon icon-handy-icon-direction" />
 			<div>
 				<h2>{t('Direction')}</h2>
 			</div>

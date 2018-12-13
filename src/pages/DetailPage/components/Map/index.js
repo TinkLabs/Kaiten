@@ -2,61 +2,39 @@ import GoogleMapReact from 'google-map-react';
 
 import React from 'react';
 import styles from './index.module.scss';
-
+import MapJS from './map';
 const MarkerLabel = ({ title, subtitle }) => (
 	<div className={styles.marker}>
 		<h2>{title}</h2>
 		<p>{subtitle}</p>
 	</div>
 );
+const loadingDiv = <div/>;
 
 
 const Map = ({
-	lat,
-	lng,
-	name,
-	subtitle,
+	restaurant,
 }) => {
-	if (!lat && !lng) return null;
-	const renderMarkers = (map, maps) => {
-		const marker = new maps.Marker({
-			position: {
-				lat,
-				lng,
-			},
-			map,
-		});
-		return marker;
-	};
+	const lat = restaurant.get('lat');
+	const lng = restaurant.get('lng');
+	const name = restaurant.get('name');
+	if (!lat || !lng) return null;
 	return (
 		<div className={styles.mapContainer}>
-			<button
+			<div
 				className={styles.map} 
-				nClick={() => {
+				onClick={() => {
 					window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
 				}}
 			>
-				<GoogleMapReact
-					bootstrapURLKeys={{ key: 'AIzaSyBwuj7BZgdtuQgjZnbhFfqmUWRK2Lq_Jc8' }}
-					defaultCenter={{
-						lat,
-						lng,
-					}}
-					defaultZoom={16}
-					onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
-					options={{
-						fullscreenControl: false,
-						disableDefaultUI: true,
-					}}
-				>
-					<MarkerLabel
-						lat={lat}
-						lng={lng}
-						title={name}
-						subtitle={subtitle}
-					/>
-				</GoogleMapReact>
-			</button>
+				<MapJS
+					restaurant={restaurant}
+					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=2"
+					loadingElement={loadingDiv}
+					containerElement={loadingDiv}
+					mapElement={loadingDiv}
+				/>
+			</div>
 		</div>
 	);
 };

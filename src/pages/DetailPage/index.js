@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import renderHtml from 'react-render-html';
@@ -15,7 +15,7 @@ import styles from './index.module.scss';
 
 const loadingDiv = <div style={{ height: `100%` }} />;
 
-class DetailPage extends PureComponent {
+class DetailPage extends Component {
 	componentDidMount() {
 		if (this.props.restaurant.get('detail_loaded')) return;
 		const id = this.props.match.params.id;
@@ -55,7 +55,7 @@ class DetailPage extends PureComponent {
 									{restaurant.get('tel')}
 									{restaurant.get('idd') ? `(${restaurant.get('idd')})` : null}
 								 </span>
-								<span className="icon icon-handy-icon-phone" />
+								<span className="icon icon-handy-icon-phone-solid" />
 							</button>
 						</Row> 
 						: null
@@ -89,14 +89,7 @@ class DetailPage extends PureComponent {
 						: null }
 					<div>
 						<Map
-							googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=3.exp&libraries=geometry,drawing,places"
-							loadingElement={loadingDiv}
-							containerElement={loadingDiv}
-							mapElement={loadingDiv}
-							lat={restaurant.get('lat')}
-							lng={restaurant.get('lng')}
-							name={restaurant.get('name')}
-							subtitle={restaurant.get('category')}
+							restaurant={restaurant}
 						/>
 					</div>
 				</div>
@@ -113,7 +106,7 @@ const mapStateToProps = (state, ownProps) => {
 		lng: state.getIn(['device', 'lng']),
 		locationEnabled: state.getIn(['device', 'locationEnabled']),
 		restaurants: state.getIn(['result', 'restaurants']),
-		restaurant: state.getIn(['result', 'restaurants', id], new Restaurant()),
+		restaurant: state.getIn(['result', 'cached_restaurant', id], new Restaurant()),
 	};
 }
 

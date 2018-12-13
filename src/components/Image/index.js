@@ -19,9 +19,9 @@ function Image({ src, size, width, height, heightRatio, ...props}) {
 Image.propTypes = {
 	src: PropTypes.string,
 	size: PropTypes.number,
-	width: PropTypes.number,
-	height: PropTypes.number,
-	heightRatio: PropTypes.number,
+	width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	heightRatio: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 Image.defaultProps = {
 	src: '',

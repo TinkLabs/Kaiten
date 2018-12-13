@@ -1,5 +1,6 @@
 import { Record, List } from 'immutable';
 import Geo from 'utils/Geo';
+import Android from 'utils/Android';
 
 
 export default class Restaurant extends Record({
@@ -26,13 +27,13 @@ export default class Restaurant extends Record({
 	url_coupon: '',
 	detail_loaded: false,
 }) {
-	constructor(obj, deviceHotelId = null) {
+	constructor(obj) {
 		if (!obj) return super();
 		super({
 			...obj,
 			id: obj._id,
-			hotel_id: obj.hotel._id,
-			in_hotel: obj.in_hotel || parseInt(obj.hotel._id, 10) === parseInt(deviceHotelId, 10),
+			hotel_id: obj.hotel ? parseInt(obj.hotel._id, 10) : null,
+			in_hotel: obj.hotel && parseInt(obj.hotel._id, 10) === parseInt(Android().hotel_id, 10),
 			category: obj.categories && obj.categories.length ? obj.categories[0].name : '',
 			budget: parseInt(obj.budget, 10),
 			area: obj.areas ? obj.areas[0].name : '',
@@ -40,6 +41,7 @@ export default class Restaurant extends Record({
 			untranslated_name: obj.name,
 			untranslated_address: obj.address,
 			html: obj.description || '',
+			images: obj.images ? List(obj.images) : List(),
 		});
 	}
 	compareTo(b = new Restaurant(), deviceLat = null, deviceLng = null) {

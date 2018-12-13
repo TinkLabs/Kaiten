@@ -2,6 +2,7 @@ import React from 'react';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { updateActiveID, hideDirection, fetchRestaurants } from 'modules/result';
 import {
@@ -9,7 +10,7 @@ import {
 	withGoogleMap,
 	GoogleMap,
 	DirectionsRenderer} from 'react-google-maps';
-import MapMarker from '../MapMarker';
+import { MapMarker } from 'components';
 import CurrentLocationMarker from '../CurrentLocationMarker';
 import styles from './index.module.scss';
 
@@ -36,6 +37,7 @@ class Map extends React.Component {
 			directions: null,
 			lastActiveId: null,
 			zoom: 18,
+			currentLocation: false,
 		};
 		this.mapRef = null;
 		this.onClick = this.onClick.bind(this);
@@ -74,8 +76,8 @@ class Map extends React.Component {
 				});
 			});
 		}
-		if (nextProps.activeId !== nextState.lastActiveId) {
-			if (this.props.restaurants !== nextProps.restaurants) return;
+		if (nextProps.activeId !== nextState.lastActiveId && nextProps.activeId !== this.props.activeId ) {
+			if (this.props.restaurants !== nextProps.restaurants) return true;
 			const r = nextProps.restaurants.get(nextProps.activeId);
 			if (!r) return true;
 			const shouleUpdateCenter = this.isOutBound(r.get('lat'), r.get('lng'));
@@ -117,16 +119,28 @@ class Map extends React.Component {
 	setCenter(lat, lng) {
 		if (!this.mapRef) return;
 		this.mapRef.panTo(new window.google.maps.LatLng(lat, lng));
+		this.setState({
+			currentLocation: false,
+		});
 	}
 	gotoCurrentLocation() {
 		if (!this.props.locationEnabled) return;
-		this.setCenter(this.props.lat, this.props.lng);
-		this.props.fetchRestaurants(this.props.lat, this.props.lng);
+		this.setState({
+			currentLocation: true,
+		}, () => {
+			if (!this.mapRef) return;
+			this.mapRef.panTo(new window.google.maps.LatLng(this.props.lat, this.props.lng));
+			this.props.fetchRestaurants(this.props.lat, this.props.lng);
+		});
 	}
 	fetchRestaurants = () => {
-		const lat = this.mapRef.getCenter().lat();
-		const lng = this.mapRef.getCenter().lng();
-		this.props.fetchRestaurants(lat, lng);
+		this.setState({
+			currentLocation: false,
+		}, () => {
+			const lat = this.mapRef.getCenter().lat();
+			const lng = this.mapRef.getCenter().lng();
+			this.props.fetchRestaurants(lat, lng);
+		});
 	}
 	updateZoom = (zoom) => {
 		this.setState({
@@ -170,8 +184,13 @@ class Map extends React.Component {
 					</GoogleMap>
 					: null}
 				{this.props.locationEnabled ?
-					<button onClick={this.gotoCurrentLocation} className={styles.btnLocation}>
-						<span className="icon icon-handy-icon-guest-experience" />
+					<button
+						onClick={this.gotoCurrentLocation}
+						className={classnames(styles.btnLocation, {
+							[styles.active]: this.state.currentLocation,
+						})}
+					>
+						<span className="icon icon-hotel-icon-gps-arrow" />
 					</button>
 					: null}
 			</div>

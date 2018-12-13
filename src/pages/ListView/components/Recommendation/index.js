@@ -4,9 +4,9 @@ import styles from './index.module.scss';
 
 function Recommendation({ inHotel = false, staffLikeCount = 0 }) {
 	let staffIcon = <span />;
-	if (staffLikeCount > 10) {
+	if (staffLikeCount > 2) {
 		staffIcon =  <span className="icon icon-handy-icon-staff-fav3" />;
-	} else if (staffLikeCount > 5) {
+	} else if (staffLikeCount > 1) {
 		staffIcon =  <span className="icon icon-handy-icon-staff-fav2" />;
 	} else if (staffLikeCount) {
 		staffIcon =  <span className="icon icon-handy-icon-staff-fav1" />;
@@ -14,7 +14,7 @@ function Recommendation({ inHotel = false, staffLikeCount = 0 }) {
 	return (
 		<div className={styles.Recommendation}>
 			{staffIcon}
-			{inHotel ? <span className="icon icon-handy-icon-hotel" />: <span />}
+			{inHotel ? <span className="icon icon-handy-icon-inhotel" />: <span />}
 		</div>
 	)
 }

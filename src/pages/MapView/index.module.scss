@@ -12,3 +12,28 @@
 		width: 300px;
 	}
 }
+.address {
+	position: absolute;
+	padding: 10px;
+	top: 10px;
+	left: 10px;
+	width: 255px;
+	border-radius: 7px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.6);
+	h1 {
+		font-size: 18px;
+		color: #fff;
+		font-weight: 700;
+	}
+	h2 {
+		font-size: 13px;
+		color: #fff;
+		font-weight: 700;
+		opacity: 0.7;
+	}
+	p {
+		font-size: 13px;
+		padding-top: 10px;
+	}
+}
