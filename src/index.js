@@ -13,7 +13,7 @@ import store from 'store';
 const Main = () => (
 	<Provider store={store}>
 		<HashRouter onUpdate={() => {
-				window.document.getElementById('content').scrollTo(0, 0)
+				window.document.getElementById('main').scrollTo(0, 0)
 			}}>
 			<App />
 		</HashRouter>

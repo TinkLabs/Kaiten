@@ -68,7 +68,7 @@ export const hideDirection = () => (dispatch) => {
 	});
 };
 export const fetchRestaurants = (currentLat, currentLng) => (dispatch) => {
-	list(currentLat, currentLng)
+	return list(currentLat, currentLng)
 		.then((restaurants) => {
 			const r = restaurants.sort((a, b) => a.compareTo(b, currentLat, currentLng));
 			dispatch({

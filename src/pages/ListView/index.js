@@ -2,9 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { fetchRestaurants } from 'modules/result';
 import { updateActiveID } from 'modules/result';
 import Immutable from 'immutable';
 import { scroller, Element } from 'react-scroll';
+import styles from './index.module.scss';
+import PullToRefresh from 'react-pull-to-refresh';
+import t from 'translation';
 import RestaurantListItem from './components/Restaurant';
 
 
@@ -13,6 +17,8 @@ class ListView extends React.PureComponent{
 		super(props);
 		this.state = {
 			activeId: props.activeId,
+			loading: false,
+			error: false,
 		};
 		this.scrollTo(props.activeId);
 	}
@@ -41,21 +47,54 @@ class ListView extends React.PureComponent{
 		// 	offset: 50, // Scrolls to element + 50 pixels down the page
 		// });
 	}
+	handleRefresh = (resolve, reject) => {
+		// do some async code here
+		this.setState({
+			loading: true,
+			error: false,
+		}, () => {
+			this.props.fetchRestaurants(this.props.lat, this.props.lng)
+				.then(() => {
+					resolve();
+					this.setState({
+						loading: false,
+					});
+				})
+				.catch(() => {
+					resolve();
+					this.setState({
+						loading: false,
+						error: true,
+					});
+				});	
+		});
+	}
 	render() {
 		const { restaurants, history } = this.props;
 		return (
 			<div id="list" style={{ height: '100%' }}>
-				{restaurants.map(r => (
-					<Element name={`element-${r.get('id')}`} key={`element-${r.get('id')}`}>
-						<RestaurantListItem
-							restaurant={r}
-							onClick={() => {
-								this.props.updateActiveID(r.get('id'));
-								history.push(`/restaurants/${r.get('id')}`);
-							}}
-						/>
-					</Element>
-				))}
+				<PullToRefresh
+					onRefresh={this.handleRefresh}
+					className={styles.ptr}
+				>
+					<div className={styles.listview}>
+						{this.state.error ?
+						<div className={styles.error}>{t('Network disconnected / Server error, please try again.')}</div> : null}
+						<div style={{ opacity: this.state.loading ? 0.5 : 1 }}>
+							{restaurants.map(r => (
+								<Element name={`element-${r.get('id')}`} key={`element-${r.get('id')}`}>
+									<RestaurantListItem
+										restaurant={r}
+										onClick={() => {
+											this.props.updateActiveID(r.get('id'));
+											history.push(`/restaurants/${r.get('id')}`);
+										}}
+									/>
+								</Element>
+							))}
+						</div>
+					</div>
+				</PullToRefresh>
 			</div>
 		);
 	}
@@ -70,6 +109,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	updateActiveID: bindActionCreators(updateActiveID, dispatch),
+	fetchRestaurants: bindActionCreators(fetchRestaurants, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListView));

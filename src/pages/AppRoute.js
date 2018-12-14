@@ -32,7 +32,7 @@ class App extends Component {
 						<Nav />
 						<Controls />
 					</div>
-					<div className={styles.content} id="content">
+					<div className={styles.content} id="main">
 						<Switch>
 							<Route
 								exact

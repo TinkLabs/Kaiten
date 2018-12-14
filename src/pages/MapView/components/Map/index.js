@@ -164,9 +164,10 @@ class Map extends React.Component {
 				{this.props.resultLat && this.props.resultLng ? 
 					<GoogleMap	
 						ref={(ref) => { this.mapRef = ref; }}
-						maxZoom={19}
+						maxZoom={23}
 						defaultZoom={this.state.zoom}
 						defaultCenter={latlng}
+						minZoom={15}
 						options={mapOptions}
 						onDragEnd={this.fetchRestaurants}
 						onZoomChanged={this.updateZoom}

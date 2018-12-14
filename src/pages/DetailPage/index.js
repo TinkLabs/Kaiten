@@ -13,10 +13,10 @@ import CallToAction from './components/CallToAction';
 import Map from './components/Map';
 import styles from './index.module.scss';
 
-const loadingDiv = <div style={{ height: `100%` }} />;
 
 class DetailPage extends Component {
 	componentDidMount() {
+		document.getElementById('main').scrollTo(0, 0);
 		if (this.props.restaurant.get('detail_loaded')) return;
 		const id = this.props.match.params.id;
 		this.props.fetchRestaurant(id);
@@ -88,9 +88,10 @@ class DetailPage extends Component {
 						</Row>
 						: null }
 					<div>
-						<Map
+						{restaurant.get('lat') ? 
+							<Map
 							restaurant={restaurant}
-						/>
+							/> : null }
 					</div>
 				</div>
 					

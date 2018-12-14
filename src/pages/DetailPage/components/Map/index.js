@@ -1,15 +1,7 @@
-import GoogleMapReact from 'google-map-react';
 
 import React from 'react';
 import styles from './index.module.scss';
-import MapJS from './map';
-const MarkerLabel = ({ title, subtitle }) => (
-	<div className={styles.marker}>
-		<h2>{title}</h2>
-		<p>{subtitle}</p>
-	</div>
-);
-const loadingDiv = <div/>;
+
 
 
 const Map = ({
@@ -27,13 +19,7 @@ const Map = ({
 					window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
 				}}
 			>
-				<MapJS
-					restaurant={restaurant}
-					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=2"
-					loadingElement={loadingDiv}
-					containerElement={loadingDiv}
-					mapElement={loadingDiv}
-				/>
+				<img style={{ width: '100%' }} src={`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=18&size=1200x600&scale=2&maptype=roadmap&markers=${lat},${lng}&key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0`} />
 			</div>
 		</div>
 	);

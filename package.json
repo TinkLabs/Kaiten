@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "geolib": "^2.0.24",
-    "google-map-react": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-json-sort": "^1.0.0",
     "gulp-json-transform": "^0.4.5",
@@ -22,6 +21,7 @@
     "react-dynamic-swiper": "^2.0.0",
     "react-google-maps": "^9.4.5",
     "react-id-swiper": "1.6.5",
+    "react-pull-to-refresh": "^1.1.2",
     "react-redux": "^5.1.1",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^4.3.1",
