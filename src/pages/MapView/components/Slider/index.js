@@ -21,7 +21,11 @@ class MapMarker extends React.Component {
 	componentDidMount() {
 		this.gotoSlide(this.props.activeId, 0);
 	}
-	componentDidUpdate() {
+	componentDidUpdate(prevProps)  {
+		if (prevProps.activeId === this.props.activeId) {
+			this.gotoSlide(this.props.activeId, 0);
+			return;
+		}
 		this.gotoSlide(this.props.activeId, 300);
 	}
 	setActiveId(id) {

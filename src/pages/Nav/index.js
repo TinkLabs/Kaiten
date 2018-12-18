@@ -8,9 +8,13 @@ const Nav = () => (
 	<div className={styles.div}>
 		<span className={styles.title}>{t('handy Restaurants')}</span>
 		<NavLink exact to="/map" activeStyle={{display: 'none'}}>
-			{t('Map View')}
+			<span className="icon icon-handy-icon-location" />
+			<span>{t('Map View')}</span>
 		</NavLink>
-		<NavLink exact to="/" activeStyle={{display: 'none'}}>{t('List View')}</NavLink>
+		<NavLink exact to="/" activeStyle={{display: 'none'}}>
+			<span className="icon icon-handy-icon-details" />
+			<span>{t('List View')}</span>
+		</NavLink>
 	</div>
 );
 

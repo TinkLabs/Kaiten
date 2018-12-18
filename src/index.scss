@@ -202,3 +202,10 @@ button {
 	-webkit-transform: translate3d( 0, 50px, 0 );
 	transform: translate3d( 0, 50px, 0 );
 }
+.refresh-view.disabled {
+  transform: translate3d(0px, 0px, 0px) !important;
+}
+ 
+.ptr-element.disabled {
+  display: none !important;
+}

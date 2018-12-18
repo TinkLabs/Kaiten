@@ -25,9 +25,22 @@ export default (state = initialState, action) => {
 		case RESET:
 			return initialState;
 		case INIT_RESTAURANTS:
+			let activeId = state.get('id', null);
+			let restaurants = action.restaurants;
+			if (!action.restaurants.get(activeId)) {
+				const activeRestaurant = state.getIn(['cached_restaurant', activeId]);
+				if (activeRestaurant) {
+					restaurants = Immutable.OrderedMap({[activeId]: activeRestaurant})
+						.concat(restaurants);
+				}
+			}
+			if (!activeId) {
+				activeId = restaurants.valueSeq().getIn([0, 'id'], null);
+			}
 			return state
-				.set('restaurants', action.restaurants)
-				.update('cached_restaurant', map => map.concat(action.restaurants));
+				.set('restaurants', restaurants)
+				.update('cached_restaurant', map => map.concat(action.restaurants))
+				.set('id', activeId);
 		case ADD_RESTAURANTS:
 			// exclude duplication
 			const filteredRestaurant = action.restaurants
@@ -74,10 +87,6 @@ export const fetchRestaurants = (currentLat, currentLng) => (dispatch) => {
 			dispatch({
 				type: INIT_RESTAURANTS,
 				restaurants: r,
-			});
-			dispatch({
-				type: UPDATE_ACTIVE_ID,
-				id: r.valueSeq().getIn([0, 'id']),
 			});
 			dispatch({
 				type: UPDATE_RESULT_LAT_LNG,

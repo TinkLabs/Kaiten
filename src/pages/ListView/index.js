@@ -7,7 +7,7 @@ import { updateActiveID } from 'modules/result';
 import Immutable from 'immutable';
 import { scroller, Element } from 'react-scroll';
 import styles from './index.module.scss';
-import PullToRefresh from 'react-pull-to-refresh';
+// import PullToRefresh from 'react-pull-to-refresh';
 import t from 'translation';
 import RestaurantListItem from './components/Restaurant';
 
@@ -73,28 +73,23 @@ class ListView extends React.PureComponent{
 		const { restaurants, history } = this.props;
 		return (
 			<div id="list" style={{ height: '100%' }}>
-				<PullToRefresh
-					onRefresh={this.handleRefresh}
-					className={styles.ptr}
-				>
-					<div className={styles.listview}>
-						{this.state.error ?
-						<div className={styles.error}>{t('Network disconnected / Server error, please try again.')}</div> : null}
-						<div style={{ opacity: this.state.loading ? 0.5 : 1 }}>
-							{restaurants.map(r => (
-								<Element name={`element-${r.get('id')}`} key={`element-${r.get('id')}`}>
-									<RestaurantListItem
-										restaurant={r}
-										onClick={() => {
-											this.props.updateActiveID(r.get('id'));
-											history.push(`/restaurants/${r.get('id')}`);
-										}}
-									/>
-								</Element>
-							))}
-						</div>
+				<div className={styles.listview}>
+					{this.state.error ?
+					<div className={styles.error}>{t('Network disconnected / Server error, please try again.')}</div> : null}
+					<div style={{ opacity: this.state.loading ? 0.5 : 1 }}>
+						{restaurants.size && restaurants.map(r => (
+							<Element name={`element-${r.get('id')}`} key={`element-${r.get('id')}`}>
+								<RestaurantListItem
+									restaurant={r}
+									onClick={() => {
+										this.props.updateActiveID(r.get('id'));
+										history.push(`/restaurants/${r.get('id')}`);
+									}}
+								/>
+							</Element>
+						))}
 					</div>
-				</PullToRefresh>
+				</div>
 			</div>
 		);
 	}

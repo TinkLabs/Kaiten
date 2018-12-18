@@ -10,20 +10,42 @@ import {
 	withGoogleMap,
 	GoogleMap,
 	DirectionsRenderer} from 'react-google-maps';
+import TransitionGroup from 'react-transition-group/TransitionGroup'; // ES6
+
 import { MapMarker } from 'components';
 import CurrentLocationMarker from '../CurrentLocationMarker';
 import styles from './index.module.scss';
 
-const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
+// import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
 const mapOptions = {
 	styles: [
 		{
-			featureType: "poi",
-			stylers: [
-				{ visibility: "off" }
-			],
+			'featureType': 'landscape.man_made',
+			'stylers': [
+				{
+					'visibility': 'simplified'
+				}
+			]
 		},
+		{
+			'featureType': 'poi.business',
+			'elementType': 'labels.icon',
+			'stylers': [
+				{
+					'visibility': 'off'
+				}
+			]
+		},
+		{
+			'featureType': 'poi.business',
+			'elementType': 'labels.text',
+			'stylers': [
+				{
+					'visibility': 'off'
+				}
+			]
+		}
 	],
 	gestureHandling: 'greedy',
 	clickableIcons: false,
@@ -173,7 +195,7 @@ class Map extends React.Component {
 						onZoomChanged={this.updateZoom}
 					>
 						{this.props.locationEnabled ? <CurrentLocationMarker /> : null}
-						
+						<TransitionGroup>
 							{this.props.restaurants.valueSeq().map(r => (
 								<MapMarker
 									key={`key-map-marker-${r.get('id')}`}
@@ -181,6 +203,7 @@ class Map extends React.Component {
 									restaurant={r}
 									onClick={() => { this.onClick(r); }}
 								/>))}
+						</TransitionGroup>
 						{this.state.directions && <DirectionsRenderer directions={this.state.directions} options={{suppressMarkers: true}} />}
 					</GoogleMap>
 					: null}
@@ -191,7 +214,7 @@ class Map extends React.Component {
 							[styles.active]: this.state.currentLocation,
 						})}
 					>
-						<span className="icon icon-hotel-icon-gps-arrow" />
+						<span className='icon icon-hotel-icon-gps-arrow' />
 					</button>
 					: null}
 			</div>

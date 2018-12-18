@@ -8,6 +8,10 @@
 		display: inline-block;
 		vertical-align: middle;
 	}
+	span {
+		display: inline-block;
+		vertical-align: middle;
+	}
 	a {
 		float: right;
 		text-decoration: none;
@@ -19,6 +23,18 @@
 		display: inline-block;
 		vertical-align: middle;
 		margin: 0 2px;
+		cursor: pointer;
+		:global(.icon) {
+			font-size: 14px;
+			margin-right: 5px;
+			margin-top: -8px;
+			height: 12px;
+		}
+		:global(.icon-handy-icon-location) {
+			height: 12px;
+			margin-top: -14px;
+			font-size: 18px;
+		}
 	}
 }
 .active {
