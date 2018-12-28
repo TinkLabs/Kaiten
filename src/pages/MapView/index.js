@@ -14,7 +14,7 @@ class MapView extends React.PureComponent {
 			<div className={styles.MapView}>
 				<Map
 					restaurants={restaurants}
-					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=2"
+					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0&v=3"
 					loadingElement={loadingDiv}
 					containerElement={loadingDiv}
 					mapElement={loadingDiv}
