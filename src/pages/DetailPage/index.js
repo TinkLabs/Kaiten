@@ -71,7 +71,7 @@ class DetailPage extends Component {
 					{restaurant.get('budget') ?
 						<Row title={t('Budget')}>
 							<span className={styles.column}>
-								JPY${restaurant.get('budget')}~
+								￥{restaurant.get('budget')}~
 							</span>
 						</Row> 
 						: null

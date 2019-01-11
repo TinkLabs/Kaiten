@@ -29,20 +29,20 @@ function ListItem({ restaurant, ...props }) {
 					{restaurant.get('budget') !== 0 ?
 						<span className={styles.price}>
 							{t('Budget: %{currency_symbol}%{budget}~', {
-								currency_symbol: '$',
+								currency_symbol: '￥',
 								budget: restaurant.get('budget'),
 							})}
 						</span>
 					: null}
 				</div>
 				<div className={styles.locationWrapper}>
-					<Recommendation
-						inHotel={restaurant.get('in_hotel')}
-					/>
 					<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
 				</div>
 				<StaffLike count={restaurant.get('staff_like_count')} />
 			</Button>
+			<Recommendation
+				inHotel={restaurant.get('in_hotel')}
+			/>
 		</div>
 	)
 }

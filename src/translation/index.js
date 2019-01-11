@@ -2,10 +2,17 @@ import React from 'react';
 import renderHTML from 'react-render-html';
 import { LocaleContext } from 'pages/locale-context';
 import zh_TW from './zh_TW.json';
+import ja_JP from './ja_JP.json';
+import en_US from './en_US.json';
+import zh_CN from './zh_CN.json';
+
 
 const translation = {
+	zh_CN,
 	zh_TW,
-}
+	ja_JP,
+	en_US,
+};
 function putVarsToString(str, vars = {}) {
 	let result = str;
 	const matches = str.match(/%{\s?\w+}/g) || [];

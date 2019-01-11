@@ -20,8 +20,10 @@ const defaultProps = {
 class App extends Component {
 	constructor(props) {
 		super(props);
+		const locale = new URLSearchParams(window.location.search).get('locale');
+
 		this.state = {
-			locale: 'ja_JP',
+			locale: locale || 'en_US',
 		};
 	}
 	render() {

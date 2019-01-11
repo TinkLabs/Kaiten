@@ -1,17 +1,17 @@
 {
-	"*Please note that inquiry by phone may only be available in Japanese.": "*注意：電話查詢可能只適用於日語",
+	"*Please note that inquiry by phone may only be available in Japanese.": "*電話查詢可能僅限日語。",
 	"Address": "地址",
-	"Budget": "預算",
-	"Budget: %{currency_symbol}%{budget}~": "預算: 大約%{currency_symbol}%{budget}",
+	"Budget": "人均消費",
+	"Budget: %{currency_symbol}%{budget}~": "人均消費 : %{currency_symbol}%{budget}",
 	"Call %{tel}": "致電 %{tel}",
-	"Direction": "方向",
-	"Get to Coupon": "折扣",
+	"Direction": "路線",
+	"Get to Coupon": "獲得優惠券",
 	"List View": "列表",
 	"Map View": "地圖",
-	"Online Reservation": "線上預約",
+	"Online Reservation": "網上訂座",
 	"Opening Hour": "營業時間",
-	"Phone Number": "電話",
+	"Phone Number": "電話號碼",
 	"Restaurant Name": "餐廳名稱",
-	"Save your budget up to 10%": "節省10%預算",
-	"handy Restaurants": "handy 餐廳"
+	"Save your budget up to 10%": "節省高達10%",
+	"handy Restaurants": "handy 精選餐廳"
 }

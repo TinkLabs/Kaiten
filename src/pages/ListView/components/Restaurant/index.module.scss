@@ -35,6 +35,7 @@
 	flex-flow: row nowrap;
 	background: #162f3e;
 	color: #fff;
+	height: 80px;
 	overflow: hidden;
 	margin-bottom: 1px;
 	&:focus {
@@ -62,7 +63,8 @@
 		min-width: 80px;
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		height: 80px;
+		justify-content: flex-end;
 	}
 	.Recommendation {
 		flex: 1;

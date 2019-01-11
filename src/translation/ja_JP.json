@@ -1,0 +1,17 @@
+{
+	"*Please note that inquiry by phone may only be available in Japanese.": "",
+	"Address": "住所",
+	"Budget": "予算",
+	"Budget: %{currency_symbol}%{budget}~": "予算: 大約%{currency_symbol}%{budget}~",
+	"Call %{tel}": "電話 %{tel}",
+	"Direction": "行き方",
+	"Get to Coupon": "クーポン獲得",
+	"List View": "リスト",
+	"Map View": "地図",
+	"Online Reservation": "オンライン予約",
+	"Opening Hour": "営業時間",
+	"Phone Number": "電話番号",
+	"Restaurant Name": "レストラン名",
+	"Save your budget up to 10%": "最大10%割引",
+	"handy Restaurants": "handyレストラン"
+}

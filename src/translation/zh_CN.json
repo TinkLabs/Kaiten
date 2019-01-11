@@ -1,0 +1,17 @@
+{
+	"*Please note that inquiry by phone may only be available in Japanese.": "*电话查询可能仅限日语。",
+	"Address": "地址",
+	"Budget": "人均消费",
+	"Budget: %{currency_symbol}%{budget}~": "人均消费 :%{currency_symbol}%{budget}",
+	"Call %{tel}": "致电 %{tel}",
+	"Direction": "路线",
+	"Get to Coupon": "获得优惠券",
+	"List View": "列表",
+	"Map View": "地图",
+	"Online Reservation": "网上订座",
+	"Opening Hour": "营业时间",
+	"Phone Number": "电话号码",
+	"Restaurant Name": "餐厅名字",
+	"Save your budget up to 10%": "节省高达10%",
+	"handy Restaurants": "handy 精选餐厅"
+}
