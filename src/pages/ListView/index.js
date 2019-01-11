@@ -9,6 +9,7 @@ import { scroller, Element } from 'react-scroll';
 import styles from './index.module.scss';
 // import PullToRefresh from 'react-pull-to-refresh';
 import t from 'translation';
+import Mixpanel from 'utils/Mixpanel';
 import RestaurantListItem from './components/Restaurant';
 
 
@@ -77,11 +78,19 @@ class ListView extends React.PureComponent{
 					{this.state.error ?
 					<div className={styles.error}>{t('Network disconnected / Server error, please try again.')}</div> : null}
 					<div style={{ opacity: this.state.loading ? 0.5 : 1 }}>
-						{restaurants.size && restaurants.map(r => (
+						{restaurants.size && restaurants.map((r, i) => (
 							<Element name={`element-${r.get('id')}`} key={`element-${r.get('id')}`}>
 								<RestaurantListItem
 									restaurant={r}
 									onClick={() => {
+										Mixpanel().track('Restaurants Click Restaurant Detail', {
+											item: 'restaurant',
+											container: 'list view',
+											item_id: r.get('id'),
+											item_type: 'restaurant',
+											item_position: i + 1,
+										});
+
 										this.props.updateActiveID(r.get('id'));
 										history.push(`/restaurants/${r.get('id')}`);
 									}}

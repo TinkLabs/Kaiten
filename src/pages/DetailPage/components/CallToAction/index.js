@@ -1,6 +1,6 @@
 import React from 'react';
 import t from 'translation';
-
+import Mixpanel from 'utils/Mixpanel';
 import styles from './index.module.scss';
 
 const CallToAction = ({ restaurant }) => (
@@ -9,6 +9,12 @@ const CallToAction = ({ restaurant }) => (
 			(
 				<button
 					onClick={() => {
+						Mixpanel().track('Restaurants Detail Click Call', {
+							item: 'restaurant',
+							container: 'detail page',
+							item_id: restaurant.get('id'),
+							item_type: 'restaurant',
+						});
 						window.open(`tel:${restaurant.get('tel')}`);
 					}}
 				>
@@ -23,6 +29,12 @@ const CallToAction = ({ restaurant }) => (
 			(
 				<button
 					onClick={() => {
+						Mixpanel().track('Restaurants Detail Click Reservation', {
+							item: 'restaurant',
+							container: 'detail page',
+							item_id: restaurant.get('id'),
+							item_type: 'restaurant',
+						});
 						window.open(`olink:${restaurant.get('url_reservation')}`);
 					}}
 				>
@@ -37,6 +49,12 @@ const CallToAction = ({ restaurant }) => (
 			(
 				<button
 					onClick={() => {
+						Mixpanel().track('Restaurants Detail Click Coupon', {
+							item: 'restaurant',
+							container: 'detail page',
+							item_id: restaurant.get('id'),
+							item_type: 'restaurant',
+						});
 						window.open(`olink:${restaurant.get('url_coupon')}`);
 					}}
 				>
@@ -49,6 +67,12 @@ const CallToAction = ({ restaurant }) => (
 			) : null}
 		<button
 			onClick={() => {
+				Mixpanel().track('Restaurants Detail Click Direction', {
+					item: 'restaurant',
+					container: 'detail page',
+					item_id: restaurant.get('id'),
+					item_type: 'restaurant',
+				});
 				const { lat, lng, name } = restaurant.toJSON();
 				window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
 			}}

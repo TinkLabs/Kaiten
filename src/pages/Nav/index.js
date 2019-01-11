@@ -11,7 +11,7 @@ const Nav = () => (
 		<NavLink exact to="/map" activeStyle={{display: 'none'}}>
 			<button
 				onClick={() => {
-					Mixpanel().track('POI Click Map View');
+					Mixpanel().track('Click Map View');
 				}}
 			>
 				<span className="icon icon-handy-icon-location" />
@@ -21,7 +21,7 @@ const Nav = () => (
 		<NavLink exact to="/" activeStyle={{display: 'none'}}>
 			<button
 				onClick={() => {
-					Mixpanel().track('POI Click List View');
+					Mixpanel().track('Click List View');
 				}}
 			>
 				<span className="icon icon-handy-icon-details" />

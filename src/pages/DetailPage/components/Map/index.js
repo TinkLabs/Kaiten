@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styles from './index.module.scss';
-
+import Mixpanel from 'utils/Mixpanel';
 
 
 const Map = ({
@@ -16,6 +16,12 @@ const Map = ({
 			<div
 				className={styles.map} 
 				onClick={() => {
+					Mixpanel().track('Restaurants Detail Click Map', {
+						item: 'restaurant',
+						container: 'detail page',
+						item_id: restaurant.get('id'),
+						item_type: 'restaurant',
+					});
 					window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
 				}}
 			>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'components';
 import classnames from 'classnames';
 import t from 'translation';
-import defaultImg from './default.svg';
+import defaultImg from './default.png';
 import styles from './index.module.scss'; // Import css modules stylesheet as styles
 import StaffLike from '../StaffLike';
 import Recommendation from '../Recommendation';

@@ -8,7 +8,7 @@ import RestaurantMapItem from '../Restaurant';
 import { Swiper, Slide } from 'react-dynamic-swiper';
 import { updateActiveID, showDirection } from 'modules/result';
 import styles from './index.module.scss';
-
+import Mixpanel from 'utils/Mixpanel'
 
 
 class MapMarker extends React.Component {
@@ -61,18 +61,41 @@ class MapMarker extends React.Component {
 				navigation={false}
 				pagination={false}
 			> 
-				{restaurants.valueSeq().map(r => (
+				{restaurants.valueSeq().map((r, i) => (
 					<Slide
 						key={`frame-${r.get('id')}`}
 						className={styles.itemWrapper}
 						onActive={() => {
+							Mixpanel().track('Restaurants Focus Restaurant', {
+								item: 'restaurant',
+								container: 'map view slider',
+								item_id: r.get('id'),
+								item_type: 'restaurant',
+								item_position: i + 1,
+							});
 							this.setActiveId(r.get('id'));
 						}}
 					>
 						<RestaurantMapItem
 							restaurant={r}
-							onClickDirection={this.props.showDirection}
+							onClickDirection={() => {
+								Mixpanel().track('Restaurants Click Restaurant Direction', {
+									item: 'restaurant',
+									container: 'map view slider',
+									item_id: r.get('id'),
+									item_type: 'restaurant',
+									item_position: i + 1,
+								});
+								this.props.showDirection();
+							}}
 							onClickDetail={() => {
+								Mixpanel().track('Restaurants Click Restaurant Detail', {
+									item: 'restaurant',
+									container: 'map view slider',
+									item_id: r.get('id'),
+									item_type: 'restaurant',
+									item_position: i + 1,
+								});
 								this.props.history.push(`/restaurants/${r.get('id')}`);
 							}}
 						/>

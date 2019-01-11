@@ -21,6 +21,7 @@
     "react-dom": "16.7.0",
     "react-dynamic-swiper": "^2.0.0",
     "react-google-maps": "^9.4.5",
+    "react-hotjar": "^1.0.11",
     "react-id-swiper": "1.6.5",
     "react-pull-to-refresh": "https://github.com/ayame30/react-pull-to-refresh.git",
     "react-pull2refresh": "^1.1.4",

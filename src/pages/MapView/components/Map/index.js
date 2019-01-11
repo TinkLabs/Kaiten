@@ -15,7 +15,7 @@ import TransitionGroup from 'react-transition-group/TransitionGroup'; // ES6
 import { MapMarker } from 'components';
 import CurrentLocationMarker from '../CurrentLocationMarker';
 import styles from './index.module.scss';
-
+import Mixpanel from 'utils/Mixpanel';
 // import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
 const mapOptions = {
@@ -112,6 +112,12 @@ class Map extends React.Component {
 		return !this.mapRef.getBounds().contains({ lat, lng });
 	}
 	onClick(r) {
+		Mixpanel().track('Restaurants Focus Map Marker', {
+			item: 'restaurant',
+			container: 'map view map',
+			item_id: r.get('id'),
+			item_type: 'restaurant',
+		});
 		this.setState({
 			directions: null,
 		}, () => {
@@ -140,6 +146,11 @@ class Map extends React.Component {
 	}
 	setCenter(lat, lng) {
 		if (!this.mapRef) return;
+		Mixpanel().track('Restaurants Set Map Center', {
+			lat,
+			lng,
+			zoom: this.state.zoom,
+		});
 		this.mapRef.panTo(new window.google.maps.LatLng(lat, lng));
 		this.setState({
 			currentLocation: false,
@@ -147,6 +158,7 @@ class Map extends React.Component {
 	}
 	gotoCurrentLocation() {
 		if (!this.props.locationEnabled) return;
+		Mixpanel().track('Restaurants Focus Current Location');
 		this.setState({
 			currentLocation: true,
 		}, () => {
@@ -165,6 +177,10 @@ class Map extends React.Component {
 		});
 	}
 	updateZoom = (zoom) => {
+		Mixpanel().track('Restaurants Change Zoom Level', {
+			zoom,
+		});
+
 		this.setState({
 			zoom,
 		});
