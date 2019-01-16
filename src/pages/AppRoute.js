@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { LocaleContext } from "./locale-context";
-import { hotjar } from 'react-hotjar';
 
 import MapView from './MapView';
 import ListView from './ListView';
@@ -11,6 +10,7 @@ import DetailPage from './DetailPage';
 import Mixpanel from 'utils/Mixpanel';
 
 import { Highlight } from 'components';
+import FullStory from 'react-fullstory';
 
 import styles from './index.module.scss';
 
@@ -28,13 +28,13 @@ class App extends Component {
 		this.state = {
 			locale: locale || 'en_US',
 		};
-		hotjar.initialize(1154544, 6);
 		Mixpanel().track('Restaurants Start App');
 
 	}
 	render() {
 		return (
 			<LocaleContext.Provider value={this.state.locale}>
+				<FullStory org="HSAXJ" />
 				<div className={styles.app}>
 					<div className={styles.header}>
 						<Nav />

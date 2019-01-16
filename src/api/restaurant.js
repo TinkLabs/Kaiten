@@ -25,6 +25,11 @@ const GET_RESTAURANT_BY_ID = (_id) => `
 							name
 						}
 					}
+					comments {
+						userName
+						rating
+						comment
+					}
 					hotel {
 						_id
 						name

@@ -9,7 +9,7 @@ import Row from './components/Row';
 import ImageSlider from './components/ImageSlider';
 import t from 'translation';
 import CallToAction from './components/CallToAction';
-
+import Comments from './components/Comments';
 import Map from './components/Map';
 import styles from './index.module.scss';
 
@@ -38,6 +38,7 @@ class DetailPage extends Component {
 				<div className={styles.shortDescription}>
 					{renderHtml(restaurant.get('html').split('\n').join('<br />'))}
 				</div>
+				<Comments comments={restaurant.get('comments')} />
 				<CallToAction restaurant={restaurant} />
 				<div className={styles.details}>
 					<Row title={t('Restaurant Name')}>

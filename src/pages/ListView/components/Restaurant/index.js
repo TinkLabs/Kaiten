@@ -6,7 +6,7 @@ import { Image, Button } from 'components';
 import Recommendation from '../Recommendation';
 import StaffLike from '../StaffLike';
 import { Distance } from 'containers';
-import defaultImg from './default.svg';
+import defaultImg from './default.png';
 import t from 'translation';
 
 import styles from './index.module.scss'; // Import css modules stylesheet as styles

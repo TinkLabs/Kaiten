@@ -1,6 +1,7 @@
 import { Record, List } from 'immutable';
 import Geo from 'utils/Geo';
 import Android from 'utils/Android';
+import Comment from './Comment';
 
 
 export default class Restaurant extends Record({
@@ -16,6 +17,7 @@ export default class Restaurant extends Record({
 	images: List(),
 	lat: null,
 	lng: null,
+	comments: List(),
 	in_hotel: false,
 	html: '',
 	tel: null,
@@ -42,6 +44,7 @@ export default class Restaurant extends Record({
 			untranslated_address: obj.address,
 			html: obj.description || '',
 			images: obj.images ? List(obj.images) : List(),
+			comments: obj.comments && obj.comments.length ? List(obj.comments.map(c => new Comment(c))) : List(),
 		});
 	}
 	compareTo(b = new Restaurant(), deviceLat = null, deviceLng = null) {
