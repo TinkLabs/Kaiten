@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Android from 'utils/Android';
 import { LocaleContext } from "./locale-context";
 
 import MapView from './MapView';
@@ -10,7 +11,7 @@ import DetailPage from './DetailPage';
 import Mixpanel from 'utils/Mixpanel';
 
 import { Highlight } from 'components';
-import FullStory from 'react-fullstory';
+import FullStory, { FullStoryAPI } from 'react-fullstory';
 
 import styles from './index.module.scss';
 
@@ -29,7 +30,11 @@ class App extends Component {
 			locale: locale || 'en_US',
 		};
 		Mixpanel().track('Restaurants Start App');
-
+		FullStoryAPI('identify', Android().device_user_id, {
+			hotel: Android().service_counter,
+			room_id: Android().room_id,
+			imei: Android().imei,
+		});
 	}
 	render() {
 		return (
