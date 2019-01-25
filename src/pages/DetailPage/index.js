@@ -12,6 +12,7 @@ import CallToAction from './components/CallToAction';
 import Comments from './components/Comments';
 import Map from './components/Map';
 import styles from './index.module.scss';
+import icon from './gurunavi_icon.png';
 
 
 class DetailPage extends Component {
@@ -37,6 +38,10 @@ class DetailPage extends Component {
 				</div>
 				<div className={styles.shortDescription}>
 					{renderHtml(restaurant.get('html').split('\n').join('<br />'))}
+				</div>
+				<div className={styles.restaurantProvider}>
+					{t('Restaurant information provider:')}
+					<a href={`olink:${restaurant.get('name')}`} _blank="_blank"><img src={icon} /></a>
 				</div>
 				<Comments comments={restaurant.get('comments')} />
 				<CallToAction restaurant={restaurant} />

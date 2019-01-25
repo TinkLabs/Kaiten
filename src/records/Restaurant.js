@@ -27,6 +27,7 @@ export default class Restaurant extends Record({
 	untranslated_address: '',
 	url_reservation: '',
 	url_coupon: '',
+	url_website: '',
 	detail_loaded: false,
 }) {
 	constructor(obj) {
@@ -39,7 +40,6 @@ export default class Restaurant extends Record({
 			category: obj.categories && obj.categories.length ? obj.categories[0].name : '',
 			budget: parseInt(obj.budget, 10),
 			area: obj.areas ? obj.areas[0].name : '',
-			url_reservation: obj.url_website,
 			untranslated_name: obj.name,
 			untranslated_address: obj.address,
 			html: obj.description || '',

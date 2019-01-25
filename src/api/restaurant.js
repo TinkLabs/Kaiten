@@ -47,6 +47,7 @@ const GET_RESTAURANT_BY_ID = (_id) => `
 						name
 						address
 					}
+					url_website
 					url_reservation
 					url_coupon
 				}
