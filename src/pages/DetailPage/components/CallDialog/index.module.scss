@@ -1,0 +1,29 @@
+.CallDialog {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 1;
+	color: #fff;
+	padding: 0 10px;
+	padding-top: 80px;
+	img {
+		margin-top: 10px;
+	}
+	button {
+		background: #fff;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	p {
+		font-size: 15px;
+		text-align: center;
+		font-weight: bold;
+		display: block;
+		max-width: 280px;
+		margin: 15px auto;
+		
+	}
+}

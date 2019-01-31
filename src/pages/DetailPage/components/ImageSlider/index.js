@@ -16,20 +16,24 @@ const params = {
 };
 
 const Slider = ({ images = [] }) => (
-	<Swiper
-		swiperOptions={params}
-		navigation={false}
-		pagination={false}
-	> 
-		{images && images.map((img, i) => (
-			<Slide
-				key={`img-${i}`}
-				className={styles.itemWrapper}
-			>
-				<Image src={img} width="100%" heightRatio="60%"/>
-			</Slide>
-		))}
-	</Swiper>
+	<div className={styles.slider}>
+		<Swiper
+			swiperOptions={params}
+			navigation={false}
+			pagination={true}
+		> 
+			{images && images.filter((v, i, self) => self.indexOf(v) === i).map((img, i) => (
+				<Slide
+					key={`img-${i}`}
+					className={styles.itemWrapper}
+				>
+					<div className={styles.img}>
+					<Image src={img} width="100%" heightRatio="50%"/>
+					</div>
+				</Slide>
+			))}
+		</Swiper>
+	</div>
 );
 Slider.propTypes = {
 	images: PropTypes.instanceOf(Immutable.List),

@@ -45,13 +45,14 @@ export default class Restaurant extends Record({
 			html: obj.description || '',
 			images: obj.images ? List(obj.images) : List(),
 			comments: obj.comments && obj.comments.length ? List(obj.comments.map(c => new Comment(c))) : List(),
+			staff_like_count: obj.avg_rating || 0,
 		});
 	}
 	compareTo(b = new Restaurant(), deviceLat = null, deviceLng = null) {
 		if (this.get('in_hotel') !== b.get('in_hotel')) {
 			// in hotel restaurant first
 			return b.get('in_hotel') - this.get('in_hotel');
-		} else if (this.get('in_hotel')) {
+		} else if (b.get('staff_like_count') !== this.get('staff_like_count') ) {
 			// sort by staff like count if both in hotel
 			return b.get('staff_like_count') - this.get('staff_like_count');
 		} else if (deviceLat && deviceLng){

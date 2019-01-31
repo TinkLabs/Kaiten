@@ -1,0 +1,36 @@
+.img {
+	width: 70px;
+}
+.StaffLike {
+	display: block;
+	.images {
+		text-align: left;
+		display: block;
+		margin-bottom: 2px;
+		width: 100%;
+	}
+	img {
+		width: 20px;
+		margin: 0px;
+		margin-left: 10px;
+		display: inline-block;
+	}
+	span {
+		font-size: 6px;
+		line-height: 12px;
+		display: block;
+		background: #b38536;
+		border-radius: 10px;
+		color: #fff;
+		padding: 0 9px;
+		min-width: 63px;
+		text-align: left;
+		text-transform: uppercase;
+		margin-bottom: 3px;
+	}
+	.hidden {
+		visibility: hidden;
+		height: 0;
+		margin-bottom: 0;
+	}
+}

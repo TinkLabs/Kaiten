@@ -1,3 +1,27 @@
 .itemWrapper {
 	padding: 10px;
 }
+.img {
+	border-radius: 10px;
+	overflow: hidden;
+}
+.slider {
+	margin-bottom: 20px;
+	:global(.swiper-container) {
+			overflow: visible;
+	}
+	:global(.swiper-container-horizontal > .swiper-pagination-bullets) {
+		bottom: -18px;
+	}
+	:global(.swiper-pagination-bullet-active) {
+		background: #ED882B;
+	}
+	:global(.swiper-pagination-bullet) {
+		width: 6px;
+		height: 6px;
+	}
+	:global(.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet) {
+		margin: 0 6px;
+	}
+	
+}

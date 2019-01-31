@@ -2,7 +2,34 @@
 	width: 70px;
 }
 .StaffLike {
-	position: absolute;
-	bottom: -8px;
-	left: -4px;
+	display: block;
+	.images {
+		text-align: left;
+		display: block;
+		margin-top: 10px;
+		width: 100%;
+	}
+	img {
+		width: 20px;
+		margin-right: 8px;
+		display: inline-block;
+	}
+	span {
+		font-size: 6px;
+		line-height: 12px;
+		display: block;
+		background: #b38536;
+		border-radius: 10px;
+		color: #fff;
+		padding: 0 9px;
+		min-width: 63px;
+		text-align: center;
+		text-transform: uppercase;
+		margin-bottom: 3px;
+	}
+	.hidden {
+		visibility: hidden;
+		height: 0;
+		margin-bottom: 0;
+	}
 }

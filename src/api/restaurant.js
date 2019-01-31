@@ -34,7 +34,7 @@ const GET_RESTAURANT_BY_ID = (_id) => `
 						_id
 						name
 					}
-					staff_like_count
+					avg_rating
 					cover_image
 					images
 					lat

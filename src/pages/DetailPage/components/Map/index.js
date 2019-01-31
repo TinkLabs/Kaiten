@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import Mixpanel from 'utils/Mixpanel';
-
+import full from './full.png';
 
 const Map = ({
 	restaurant,
@@ -25,7 +25,8 @@ const Map = ({
 					window.open(`geo:${lat},${lng}?q=<${lat}><${lng}>(${name})`);
 				}}
 			>
-				<img style={{ width: '100%' }} src={`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=18&size=1200x600&scale=2&maptype=roadmap&markers=${lat},${lng}&key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0`} />
+				<img style={{ width: '100%' }} src={`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=18&size=1200x400&scale=2&maptype=roadmap&markers=${lat},${lng}&key=AIzaSyDI4R0JTd3dwrzyo0P7l1RiHeduEydL5R0`} />
+				<img src={full} className={styles.full} />
 			</div>
 		</div>
 	);

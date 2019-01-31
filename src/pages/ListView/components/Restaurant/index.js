@@ -17,11 +17,8 @@ function ListItem({ restaurant, ...props }) {
 		<div className={styles.wrapper}>
 			<Button
 				{...props}
-				className={classnames(styles.ListItem, { [styles.hotel]: restaurant.get('in_hotel') })}
+				className={classnames(styles.ListItem)}
 			>
-				<div className={styles.imageWrapper}>
-					<Image src={restaurant.get('cover_image') || defaultImg} size={80} />
-				</div>
 				<div className={styles.contentWrapper}>
 					<span className={styles.name}>{restaurant.get('name')}</span>
 					<span className={styles.category}>{restaurant.get('category')}</span>
@@ -34,15 +31,23 @@ function ListItem({ restaurant, ...props }) {
 							})}
 						</span>
 					: null}
+					<div className={styles.bottomPart}>
+						<div className={styles.recommendationWrapper}>
+							<StaffLike count={restaurant.get('staff_like_count')} />
+							<Recommendation
+								inHotel={restaurant.get('in_hotel')}
+							/>
+						</div>
+					</div>
+					<div className={styles.locationWrapper}>
+
+						<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
+					</div>
 				</div>
-				<div className={styles.locationWrapper}>
-					<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
+				<div className={styles.imageWrapper}>
+					<Image src={restaurant.get('cover_image') || defaultImg} width={116} height={135} />
 				</div>
-				<StaffLike count={restaurant.get('staff_like_count')} />
 			</Button>
-			<Recommendation
-				inHotel={restaurant.get('in_hotel')}
-			/>
 		</div>
 	)
 }

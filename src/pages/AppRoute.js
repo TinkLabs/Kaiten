@@ -6,7 +6,6 @@ import { LocaleContext } from "./locale-context";
 import MapView from './MapView';
 import ListView from './ListView';
 import Controls from './Controls';
-import Nav from './Nav';
 import DetailPage from './DetailPage';
 import Mixpanel from 'utils/Mixpanel';
 
@@ -42,7 +41,6 @@ class App extends Component {
 				<FullStory org="HSAXJ" />
 				<div className={styles.app}>
 					<div className={styles.header}>
-						<Nav />
 						<Controls />
 					</div>
 					<div className={styles.content} id="main">

@@ -4,6 +4,14 @@
 .images {
 	display: block;
 }
+.header {
+	padding: 8px 8px 12px 8px;
+	background: #000f23;
+	span {
+		color: #fff;
+		font-size: 16px;
+	}
+}
 .contentWrapper {
 	padding: 10px;
 	flex: 1;
@@ -16,18 +24,31 @@
 		font-size: 15px;
 		white-space: nowrap;
 		overflow: hidden;
+		line-height: 1;
 		text-overflow: ellipsis;
+		border-left: 5px solid #021E2f;
+		padding: 0 6px;
 	}
 	.category {
-		font-size: 13px;
-		font-weight: 500;
-		opacity: 0.6;
+		padding: 5px 10px;
+		font-size: 11px;
+		font-weight: 700;
+		opacity: 0.5;
+		color: #021E2F;
 	}
 	.district {
 		font-size: 12px;
 		font-weight: 100;
-		opacity: 0.6;
+		opacity: 1;
+		position: absolute;
+		right: 10px;
+		top: 11px;
 	}
+}
+.locationWrapper {
+	position: absolute;
+	right: 10px;
+	top: 35px;
 }
 .shortDescription {
 	padding: 10px;
@@ -48,7 +69,7 @@
 .originName {
 	font-size: 20px;
 	display: inline-block;
-	font-weight: 500;
+	font-weight: 700;
 	margin-right: 15px;
 }
 .translatedName {
@@ -68,7 +89,7 @@
 	}
 }
 .column {
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 500;
 }
 .address {
@@ -82,12 +103,18 @@
 	margin-bottom: 20px;
 }
 .restaurantProvider {
-	vertical-align: middle;
+	vertical-align: bottom;
 	padding: 10px;
+	width: 100%;
+	font-size: 10px;
+	text-align: center;
 	img {
 		display: inline-block;
-		vertical-align: middle;
-		width: 90px;
+		vertical-align: bottom;
+		width: 110px;
 		margin: 0 5px;
 	}
+}
+.details {
+	padding-bottom: 200px;
 }

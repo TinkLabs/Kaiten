@@ -5,7 +5,8 @@ import SharedFadeOutInterval from './SharedFadeOutInterval';
 
 import { Marker }  from 'react-google-maps';
 import Restaurant from 'records/Restaurant';
-import marker from './marker.png';
+import pinSmall from './pin_small.png';
+import pinBig from './pin_big.png';
 
 
 
@@ -16,18 +17,18 @@ class MapMarker extends React.Component {
 			opacity: 0,
 		};
 		this.activeIcon = {
-			url: marker,
-			size: new window.google.maps.Size(40, 40),
+			url: pinSmall,
+			size: new window.google.maps.Size(40, 60),
 			origin: new window.google.maps.Point(0, 0),
-			anchor: new window.google.maps.Point(20, 40),
-			scaledSize: new window.google.maps.Size(40, 40),
+			anchor: new window.google.maps.Point(20, 60),
+			scaledSize: new window.google.maps.Size(40, 60),
 		};
 		this.icon = {
-			url: marker,
-			size: new window.google.maps.Size(24, 24),
+			url: pinBig,
+			size: new window.google.maps.Size(20, 30),
 			origin: new window.google.maps.Point(0, 0),
-			anchor: new window.google.maps.Point(12, 24),
-			scaledSize: new window.google.maps.Size(24, 24),
+			anchor: new window.google.maps.Point(10, 30),
+			scaledSize: new window.google.maps.Size(20, 30),
 		};
 	}
 	componentDidMount() {

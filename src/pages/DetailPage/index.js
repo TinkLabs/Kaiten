@@ -10,7 +10,13 @@ import ImageSlider from './components/ImageSlider';
 import t from 'translation';
 import CallToAction from './components/CallToAction';
 import Comments from './components/Comments';
+import StaffLike from './components/StaffLike';
+
+import { Distance } from 'containers';
+
 import Map from './components/Map';
+import Nav from './components/Nav';
+
 import styles from './index.module.scss';
 import icon from './gurunavi_icon.png';
 
@@ -26,6 +32,7 @@ class DetailPage extends Component {
 		const { restaurant } = this.props;
 		return (
 			<div className={styles.Page}>
+				<Nav />
 				<div className={styles.images}>
 					<ImageSlider
 						images={restaurant.get('images')}
@@ -35,15 +42,19 @@ class DetailPage extends Component {
 					<span className={styles.name}>{restaurant.get('name')}</span>
 					<span className={styles.category}>{restaurant.get('category')}</span>
 					<span className={styles.district}>{restaurant.get('area')}</span>
+					<StaffLike />
+					<div className={styles.locationWrapper}>
+						<Distance lat={restaurant.get('lat')} lng={restaurant.get('lng')} />
+					</div>
 				</div>
+				<Comments comments={restaurant.get('comments')} />
 				<div className={styles.shortDescription}>
 					{renderHtml(restaurant.get('html').split('\n').join('<br />'))}
 				</div>
 				<div className={styles.restaurantProvider}>
 					{t('Restaurant information provider:')}
-					<a href={`olink:${restaurant.get('name')}`} _blank="_blank"><img src={icon} /></a>
+					<a href={`olink:${restaurant.get('url_website')}`} _blank="_blank"><img src={icon} /></a>
 				</div>
-				<Comments comments={restaurant.get('comments')} />
 				<CallToAction restaurant={restaurant} />
 				<div className={styles.details}>
 					<Row title={t('Restaurant Name')}>
@@ -77,7 +88,7 @@ class DetailPage extends Component {
 					{restaurant.get('budget') ?
 						<Row title={t('Budget')}>
 							<span className={styles.column}>
-								￥{restaurant.get('budget')}~
+								￥{restaurant.get('budget')}
 							</span>
 						</Row> 
 						: null

@@ -88,16 +88,6 @@ class MapMarker extends React.Component {
 								});
 								this.props.showDirection();
 							}}
-							onClickDetail={() => {
-								Mixpanel().track('Restaurants Click Restaurant Detail', {
-									item: 'restaurant',
-									container: 'map view slider',
-									item_id: r.get('id'),
-									item_type: 'restaurant',
-									item_position: i + 1,
-								});
-								this.props.history.push(`/restaurants/${r.get('id')}`);
-							}}
 						/>
 					</Slide>
 				))}

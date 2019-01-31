@@ -17,23 +17,36 @@
 	padding: 10px;
 	top: 10px;
 	left: 10px;
-	width: 255px;
+	width: 219px;
 	border-radius: 7px;
 	color: #fff;
 	background: rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0px 1px 1px 1px rgba(148,148,148,.4);
+	-moz-box-shadow: 0px 1px 1px 1px rgba(148,148,148,.4);
+	box-shadow: 0px 1px 1px 1px rgba(148,148,148,.4);
 	h1 {
-		font-size: 18px;
+		font-size: 14px;
 		color: #fff;
 		font-weight: 700;
 	}
 	h2 {
-		font-size: 13px;
+		font-size: 10px;
 		color: #fff;
 		font-weight: 700;
-		opacity: 0.7;
 	}
 	p {
-		font-size: 13px;
-		padding-top: 10px;
+		font-size: 10px;
+		padding-top: 5px;
+		font-weight: 700;
+
+	}
+	span {
+		display: block;
+		width: 100%;
+		font-size: 10px;
+		font-weight: 700;
+		color: #fff;
+		margin-top: 10px;
+		text-align: center;
 	}
 }

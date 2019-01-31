@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { fetchRestaurants } from 'modules/result';
 import { updateActiveID } from 'modules/result';
+import Nav from './components/Nav';
 import Immutable from 'immutable';
 import { scroller, Element } from 'react-scroll';
 import styles from './index.module.scss';
@@ -74,11 +75,12 @@ class ListView extends React.PureComponent{
 		const { restaurants, history } = this.props;
 		return (
 			<div id="list" style={{ height: '100%' }}>
+				<Nav />
 				<div className={styles.listview}>
 					{this.state.error ?
 					<div className={styles.error}>{t('Network disconnected / Server error, please try again.')}</div> : null}
 					<div style={{ opacity: this.state.loading ? 0.5 : 1 }}>
-						{restaurants.size && restaurants.map((r, i) => (
+						{restaurants.size ? restaurants.map((r, i) => (
 							<Element name={`element-${r.get('id')}`} key={`element-${r.get('id')}`}>
 								<RestaurantListItem
 									restaurant={r}
@@ -96,7 +98,7 @@ class ListView extends React.PureComponent{
 									}}
 								/>
 							</Element>
-						))}
+						)) : null}
 					</div>
 				</div>
 			</div>

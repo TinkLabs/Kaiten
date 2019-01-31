@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import t from 'translation';
 import styles from './index.module.scss';
 import image from './in_hotel.png';
 
 function Recommendation({ inHotel = false }) {
+	if (!inHotel) return null;
 	return (
 		<div className={styles.Recommendation}>
-			{inHotel ? <img src={image} />: null}
+			<span>{t('In hotel')}</span>
 		</div>
 	)
 }

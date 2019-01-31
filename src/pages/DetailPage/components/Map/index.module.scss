@@ -9,7 +9,12 @@
 }
 .map {
 	padding: 0;
-	height: 300px;
+}
+.full {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 40px;
 }
 .marker {
 	position: relative;

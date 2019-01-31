@@ -1,45 +1,50 @@
 
 .wrapper {
-	padding: 5px 10px;
+	padding: 6px 10px;
+	
 }
 .name {
 	font-weight: 500;
 	font-size: 15px;
 	white-space: nowrap;
 	overflow: hidden;
+	color: #010002;
 	text-overflow: ellipsis;
 }
 .category {
 	font-size: 11px;
 	font-weight: 500;
-	opacity: 0.6;
+	color: #999;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 .district {
-	font-size: 10px;
-	font-weight: 100;
-	opacity: 0.6;
+	font-size: 11px;
+	font-weight: 500;
+	color: #999;
 }
 .price {
-	font-size: 12px;
+	font-size: 11px;
 	font-weight: 500;
-	opacity: 0.8;
-	margin-top: 3px;
+	color: #999;
 }
 .ListItem {
 	width: 100%;	
 	display: flex;
 	border-radius: 10px;
 	flex-flow: row nowrap;
-	background: #162f3e;
-	color: #fff;
-	height: 80px;
+	background: #fff;
+	color: #000;
+	height: 135px;
 	overflow: hidden;
 	margin-bottom: 1px;
+	-webkit-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.29);
+	-moz-box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.29);
+	box-shadow: 0px 2px 7px 1px rgba(0,0,0,0.29);
+
 	&:focus {
-		background: #2d4351;
+		background: #f4f4f4;
 	}
 	&.hotel {
 		background: #312f57;
@@ -52,19 +57,28 @@
 	}
 	.contentWrapper {
 		padding: 6px 0 6px 10px;
-		flex: 1;
+		display: flex;
+		width: 100%;
 		overflow: hidden;
-		span {
+		flex-direction: column;
+		height: 135px;
+		> span {
 			display: block;
 		}
 	}
+	.bottomPart {
+		padding: 5px 0;
+	}
+	.recommendationWrapper {
+		display: inline-block;
+	}
 	.locationWrapper {
-		padding: 5px;
+		padding: 0 5px;
 		min-width: 80px;
 		display: flex;
-		flex-direction: column;
-		height: 80px;
+		flex: 1;
 		justify-content: flex-end;
+		align-items: flex-end;
 	}
 	.Recommendation {
 		flex: 1;
