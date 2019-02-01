@@ -15,12 +15,12 @@ const params = {
 	centeredSlides: true,
 };
 
-const Slider = ({ images = [] }) => (
+const Slider = ({ images = Immutable.List() }) => (
 	<div className={styles.slider}>
 		<Swiper
 			swiperOptions={params}
+			pagination={images.size > 1}
 			navigation={false}
-			pagination={true}
 		> 
 			{images && images.filter((v, i, self) => self.indexOf(v) === i).map((img, i) => (
 				<Slide
