@@ -15,7 +15,7 @@ const CallDialog = ({
 			<img src={phone} alt="phone" />
 			<p>{t('Call %{tel}', { tel })}</p>
 			<p>{t('*Please note that inquiry by phone may only be available in Japanese.')}</p>
-			<p>{t('%{tel}に電話をかけますよろしいですか？', { tel })}</p>
+			<p>{t('Do you want to call %{tel}?', { tel })}</p>
 			<Button onClick={onCall}>{t('Call')}</Button>
 			<Button onClick={onClose}>{t('Close')}</Button>
 		</div>

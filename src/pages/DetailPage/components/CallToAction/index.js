@@ -49,7 +49,7 @@ class CallToAction extends React.Component {
 						>
 							<div>
 								<h2>{t('Call')}</h2>
-								<p>{t('*Open a dialog')}</p>
+								<p>{t('*A dial pad will open')}</p>
 							</div>
 						</Button>
 					) : null}
@@ -67,7 +67,7 @@ class CallToAction extends React.Component {
 							}}
 						>
 							<div>
-								<h2>{t('Get Coupon')}</h2>
+								<h2>{t('Check Dining Coupons')}</h2>
 							</div>
 						</Button>
 					) : null}
@@ -85,7 +85,7 @@ class CallToAction extends React.Component {
 							}}
 						>
 							<div>
-								<h2>{t('Online Reservation')}</h2>
+								<h2>{t('Book Online')}</h2>
 								<h2>({new URL(restaurant.get('url_reservation')).hostname})</h2>
 							</div>
 						</Button>
@@ -103,7 +103,7 @@ class CallToAction extends React.Component {
 					}}
 				>
 					<div>
-						<h2>{t('Direction')}</h2>
+						<h2>{t('View Location')}</h2>
 					</div>
 				</Button>
 			</div>
