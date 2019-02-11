@@ -60,7 +60,7 @@ jobs:
   deploy-production:
     environment:
       ENV: production
-      ENV_FILE: .env.production
+      ENV_FILE: .env.prod
       S3_BUCKET: s3://handy-restaurant/production
       CLOUDFRONT_ID: EXD0VT3QY5EJG
     <<: *defaults
