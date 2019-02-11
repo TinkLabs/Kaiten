@@ -8,7 +8,7 @@ import img from './logo_fix.png';
 
 const Nav = () => (
 	<div className={styles.div}>
-		<img src={img} className={styles.title} />
+		<img src={img} className={styles.title} alt="handy Restaurant"/>
 		<NavLink exact to="/map" activeStyle={{display: 'none'}}>
 			<button
 				onClick={() => {

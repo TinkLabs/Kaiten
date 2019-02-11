@@ -9,7 +9,6 @@ import Controls from './Controls';
 import DetailPage from './DetailPage';
 import Mixpanel from 'utils/Mixpanel';
 
-import { Highlight } from 'components';
 import FullStory, { FullStoryAPI } from 'react-fullstory';
 
 import styles from './index.module.scss';

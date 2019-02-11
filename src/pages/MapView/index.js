@@ -3,7 +3,6 @@ import Map from './components/Map';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import Nav from './components/Nav';
-import { Distance } from 'containers';
 import Mixpanel from 'utils/Mixpanel';
 import t from 'translation';
 import Slider from './components/Slider';

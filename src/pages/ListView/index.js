@@ -6,7 +6,7 @@ import { fetchRestaurants } from 'modules/result';
 import { updateActiveID } from 'modules/result';
 import Nav from './components/Nav';
 import Immutable from 'immutable';
-import { scroller, Element } from 'react-scroll';
+import { Element } from 'react-scroll';
 import styles from './index.module.scss';
 // import PullToRefresh from 'react-pull-to-refresh';
 import t from 'translation';

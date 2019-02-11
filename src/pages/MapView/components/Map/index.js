@@ -9,7 +9,7 @@ import {
 	withScriptjs,
 	withGoogleMap,
 	GoogleMap,
-	DirectionsRenderer, Polygon } from 'react-google-maps';
+	DirectionsRenderer } from 'react-google-maps';
 import TransitionGroup from 'react-transition-group/TransitionGroup'; // ES6
 
 import { MapMarker } from 'components';

@@ -53,7 +53,7 @@ class DetailPage extends Component {
 				</div>
 				<div className={styles.restaurantProvider}>
 					{t('Restaurant information provider:')}
-					<a href={`olink:${restaurant.get('url_website')}`} _blank="_blank"><img src={icon} /></a>
+					<a href={`olink:${restaurant.get('url_website')}`} _blank="_blank"><img src={icon} alt="gurunavi"/></a>
 				</div>
 				<CallToAction restaurant={restaurant} />
 				<div className={styles.details}>

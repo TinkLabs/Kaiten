@@ -13,7 +13,7 @@ const Comments = ({
 			{comments.filter(cm => cm.get('comment')).map(cm => (
 				<div className={styles.Comment} key={cm.get('id')}>
 					<div className={styles.user}>
-						<img className={styles.avatar} src={avatar} /> 
+						<img className={styles.avatar} src={avatar}  alt="avatar" /> 
 						<div className={styles.name}>{cm.get('userName')}</div>
 					</div>
 					<div className={styles.rightContainer}>

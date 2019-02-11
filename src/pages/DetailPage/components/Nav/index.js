@@ -3,7 +3,6 @@ import { NavLink, withRouter } from 'react-router-dom';
 import t from 'translation';
 import Mixpanel from 'utils/Mixpanel';
 import styles from './index.module.scss';
-import img from './logo_fix.png';
 
 
 const Nav = () => (
