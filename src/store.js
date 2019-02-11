@@ -33,16 +33,16 @@ const store = createStore(
 navigator.geolocation.getCurrentPosition((position) => {
 	store.dispatch({
 		type: 'UPDATE_LAT_LNG',
-		lat: position.coords.latitude && 35.66078480275123,
-		lng: position.coords.longitude && 139.7276871065369,
+		lat: position.coords.latitude,
+		lng: position.coords.longitude,
 	});
 }, (err) => {
 });
 navigator.geolocation.watchPosition((position) => {
 	store.dispatch({
 		type: 'UPDATE_LAT_LNG',
-		lat: position.coords.latitude && 35.66078480275123,
-		lng: position.coords.longitude && 139.7276871065369,
+		lat: position.coords.latitude,
+		lng: position.coords.longitude,
 	});
 });
 window.store = store;
