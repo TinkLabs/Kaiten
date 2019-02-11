@@ -1,0 +1,86 @@
+defaults: &defaults 
+  working_directory: ~/app
+  docker:
+    - image: circleci/node:8.11.2
+  steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache
+    - run: 
+        name: Install packages
+        command: yarn
+    - save_cache:
+        key: dependency-cache
+        paths:
+          - ~/.cache/yarn
+    - run: 
+        name: Rebuild node-sass
+        command: npm rebuild node-sass
+    - run: 
+        name: Install aws command line
+        command: sudo apt-get update && sudo apt-get install -y python-dev python-pip
+    - run: 
+        name: Install aws command line
+        command: sudo pip install awscli
+    - run: 
+        name: Copy .env file
+        command: sudo cp -u $ENV_FILE .env
+    - run:
+        name: Deploy ENV
+        command: yarn build && aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
+    - run:
+        name: activate cloud front
+        command: aws configure set preview.cloudfront true && aws configure set preview.create-invalidation true
+    - run:
+        name: Invalidate cloudfront
+        command: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /index.html
+version: 2
+jobs:
+  deploy-staging:
+    environment:
+      ENV: staging
+      ENV_FILE: .env.staging
+      S3_BUCKET: s3://handy-restaurant/staging
+      CLOUDFRONT_ID: E2A8ERMFBL5GUZ
+    <<: *defaults
+  deploy-uat:
+    environment:
+      ENV: uat
+      ENV_FILE: .env.uat
+      S3_BUCKET: s3://handy-restaurant/uat
+      CLOUDFRONT_ID: E2EOV2HJG3I4DX
+    <<: *defaults
+  deploy-dev:
+    environment:
+      ENV: dev
+      ENV_FILE: .env.dev
+      S3_BUCKET: s3://handy-restaurant/dev
+      CLOUDFRONT_ID: E3FA2W6FLDBMYH
+    <<: *defaults
+  deploy-production:
+    environment:
+      ENV: production
+      ENV_FILE: .env.production
+      S3_BUCKET: s3://handy-restaurant/production
+      CLOUDFRONT_ID: EXD0VT3QY5EJG
+    <<: *defaults
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - deploy-staging:
+          filters:
+            branches:
+              only: staging
+      - deploy-uat:
+          filters:
+            branches:
+              only: uat
+      - deploy-dev:
+          filters:
+            branches:
+              only: dev
+      - deploy-production:
+          filters:
+            branches:
+              only: master

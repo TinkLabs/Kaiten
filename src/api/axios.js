@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosGitHubGraphQL = axios.create({
-	baseURL: 'https://nora-staging.handytravel.tech/graphql',
+	baseURL: process.env.REACT_APP_API_HOST,
 	headers: { 'Accept-Language': 'ja_JP' },
 });
 

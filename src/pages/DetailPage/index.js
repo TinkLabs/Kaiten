@@ -35,7 +35,7 @@ class DetailPage extends Component {
 				<Nav />
 				<div className={styles.images}>
 					<ImageSlider
-						images={restaurant.get('images')}
+						images={restaurant.get('images').filter((v, i, self) => self.indexOf(v) === i)}
 					/>
 				</div>
 				<div className={styles.contentWrapper}>

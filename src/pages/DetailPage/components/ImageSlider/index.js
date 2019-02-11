@@ -22,13 +22,13 @@ const Slider = ({ images = Immutable.List() }) => (
 			pagination={images.size > 1}
 			navigation={false}
 		> 
-			{images && images.filter((v, i, self) => self.indexOf(v) === i).map((img, i) => (
+			{images && images.map((img, i) => (
 				<Slide
 					key={`img-${i}`}
 					className={styles.itemWrapper}
 				>
 					<div className={styles.img}>
-					<Image src={img} width="100%" heightRatio="50%"/>
+					<Image src={img} width="340" height={180}/>
 					</div>
 				</Slide>
 			))}
